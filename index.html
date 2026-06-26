@@ -17,15 +17,15 @@
     #deck{position:fixed;inset:0;display:flex;transition:none;will-change:transform}
     .slide{width:100vw;height:100vh;flex:0 0 100vw;padding:5vh 5vw 6vh;position:relative;overflow:hidden;background:var(--paper)}
     .slide::before{content:"";position:absolute;inset:0 0 auto;height:10px;background:linear-gradient(90deg,var(--blue),#6ea8ff,var(--orange));opacity:.95}
-    .slide-top{display:flex;justify-content:space-between;align-items:center;font:600 .64vw/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);height:2vh}
-    .time-pill{display:inline-flex;margin-top:2.2vh;padding:.55vh .7vw;border:1px solid var(--line);background:#fff;border-radius:999px;color:var(--muted);font:600 .72vw/1 var(--mono);letter-spacing:.08em}
-    h1{font-weight:650;letter-spacing:0;line-height:1.08;margin:2vh 0 3vh;font-size:min(3.75vw,6.6vh)}
+    .slide-top{display:flex;justify-content:space-between;align-items:center;font:700 clamp(13px,.95vw,18px)/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);height:2vh}
+    .time-pill{display:inline-flex;margin-top:2.2vh;padding:.65vh .85vw;border:1px solid var(--line);background:#fff;border-radius:999px;color:var(--muted);font:700 clamp(13px,1vw,18px)/1 var(--mono);letter-spacing:.06em}
+    h1{font-weight:700;letter-spacing:0;line-height:1.06;margin:2vh 0 3vh;font-size:clamp(42px,4vw,78px)}
     .body{height:calc(100vh - 20vh);min-height:0}
     .cover{background:#0f2fc6;color:#fff}
     .cover::before,.closing::before{display:none}
-    .cover h1,.closing h1{font-size:min(5.8vw,10vh);font-weight:750;max-width:12ch}
+    .cover h1,.closing h1{font-size:clamp(58px,6vw,108px);font-weight:750;max-width:12ch}
     .cover .slide-top,.cover .time-pill,.closing .slide-top,.closing .time-pill{color:rgba(255,255,255,.74);border-color:rgba(255,255,255,.28);background:transparent}
-    .cover-sub,.closing-copy{font-size:1.35vw;line-height:1.7;max-width:52ch;color:rgba(255,255,255,.82)}
+    .cover-sub,.closing-copy{font-size:clamp(22px,1.65vw,32px);line-height:1.6;max-width:52ch;color:rgba(255,255,255,.82)}
     .cover-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4vw;margin-top:5vh;max-width:70vw}
     .closing{background:#0f2fc6;color:#fff}
     .two-col{display:grid;grid-template-columns:1fr 1fr;gap:2vw;align-items:start;height:100%}
@@ -34,13 +34,13 @@
     .cols-1{grid-template-columns:1fr}.cols-2{grid-template-columns:repeat(2,1fr)}.cols-3{grid-template-columns:repeat(3,1fr)}.cols-4{grid-template-columns:repeat(4,1fr)}
     .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:2.2vh 1.3vw;box-shadow:var(--shadow)}
     .card.accent{background:var(--blue);border-color:var(--blue);color:#fff}
-    .card-title{font-size:1.2vw;font-weight:700;line-height:1.25}
-    .card-body{font-size:.9vw;line-height:1.55;color:var(--muted);margin-top:.9vh}
+    .card-title{font-size:clamp(19px,1.3vw,30px);font-weight:750;line-height:1.22}
+    .card-body{font-size:clamp(16px,1.05vw,23px);line-height:1.48;color:var(--muted);margin-top:.9vh}
     .card.accent .card-body{color:rgba(255,255,255,.82)}
     .teach-panel{display:grid;gap:1vw}
     .prompt-box{background:#0f172a;color:#dbeafe;border-radius:16px;padding:2vh 1.4vw;box-shadow:var(--shadow);height:100%;overflow:auto;border:1px solid rgba(255,255,255,.08)}
-    .prompt-label{font:700 .72vw/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#93c5fd;margin-bottom:1.3vh}
-    pre{font-family:var(--sans);font-size:1.02vw;line-height:1.62;white-space:pre-wrap;margin:0}
+    .prompt-label{font:800 clamp(13px,.95vw,18px)/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#93c5fd;margin-bottom:1.3vh}
+    pre{font-family:var(--sans);font-size:clamp(17px,1.12vw,24px);line-height:1.52;white-space:pre-wrap;margin:0}
     .shot{margin:0;display:grid;gap:.8vh;min-width:0}
     .shot-frame{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:0}
     .shot img{width:100%;height:100%;object-fit:contain;display:block}
@@ -49,15 +49,15 @@
     .image-grid.three{grid-template-columns:repeat(3,1fr)}
     .image-grid .shot-frame{height:42vh}
     .image-grid.tall .shot-frame{height:38vh}
-    figcaption{font-size:.8vw;line-height:1.45;color:var(--muted)}
+    figcaption{font-size:clamp(14px,.9vw,18px);line-height:1.42;color:var(--muted)}
     .three-prompts{display:grid;grid-template-columns:repeat(3,1fr);gap:1vw;margin-top:1.4vh;height:24vh}
     .three-prompts .prompt-box{padding:1.35vh 1vw}
-    .three-prompts pre{font-size:.78vw;line-height:1.45}
-    .bottom-note{position:absolute;left:5vw;right:5vw;bottom:3.2vh;color:var(--muted);font-size:.86vw}
+    .three-prompts pre{font-size:clamp(14px,.9vw,19px);line-height:1.42}
+    .bottom-note{position:absolute;left:5vw;right:5vw;bottom:3.2vh;color:var(--muted);font-size:clamp(15px,.95vw,19px)}
     #nav{position:fixed;left:50%;bottom:2vh;transform:translateX(-50%);display:flex;gap:7px;z-index:20}
     #nav button{width:8px;height:8px;border-radius:999px;border:0;background:#cbd5e1;padding:0}
     #nav button.active{width:26px;background:var(--blue)}
-    #hint{position:fixed;right:2vw;bottom:2vh;color:#94a3b8;font:600 .64vw/1 var(--mono);letter-spacing:.1em}
+    #hint{position:fixed;right:2vw;bottom:2vh;color:#94a3b8;font:700 clamp(12px,.75vw,15px)/1 var(--mono);letter-spacing:.08em}
   </style>
 </head>
 <body>
@@ -155,7 +155,7 @@
     <h1>下载安装：只讲学员必须完成的动作</h1>
     <div class="body"><div class="two-col wide-left">
       <figure class="shot big">
-    <div class="shot-frame"><img src="images/mac-image-13.BpXsVrXL.png" alt="官网下载安装入口：按自己的系统选择版本"></div>
+    <div class="shot-frame"><img data-src="images/mac-image-13.BpXsVrXL.webp" alt="官网下载安装入口：按自己的系统选择版本" loading="lazy" decoding="async"></div>
     <figcaption>官网下载安装入口：按自己的系统选择版本</figcaption>
   </figure>
       <div class="teach-panel">
@@ -183,15 +183,15 @@
     <h1>安装完成后，只检查三件事</h1>
     <div class="body"><div class="image-grid three">
       <figure class="shot ">
-    <div class="shot-frame"><img src="images/mac-image-16.2oor8hng.png" alt="Mac：把应用放进 Applications"></div>
+    <div class="shot-frame"><img data-src="images/mac-image-16.2oor8hng.webp" alt="Mac：把应用放进 Applications" loading="lazy" decoding="async"></div>
     <figcaption>Mac：把应用放进 Applications</figcaption>
   </figure>
       <figure class="shot ">
-    <div class="shot-frame"><img src="images/win-image-2.nX8V0i5W.png" alt="Windows：完成安装向导"></div>
+    <div class="shot-frame"><img data-src="images/win-image-2.nX8V0i5W.webp" alt="Windows：完成安装向导" loading="lazy" decoding="async"></div>
     <figcaption>Windows：完成安装向导</figcaption>
   </figure>
       <figure class="shot ">
-    <div class="shot-frame"><img src="images/mac-image-20.CSF6dln-.png" alt="登录：扫码或手机号登录"></div>
+    <div class="shot-frame"><img data-src="images/mac-image-20.CSF6dln-.webp" alt="登录：扫码或手机号登录" loading="lazy" decoding="async"></div>
     <figcaption>登录：扫码或手机号登录</figcaption>
   </figure>
     </div>
@@ -206,7 +206,7 @@
     <h1>先认识三块区域</h1>
     <div class="body"><div class="two-col wide-left">
       <figure class="shot big">
-    <div class="shot-frame"><img src="images/quickstart-1.DGnw1yR0.png" alt="WorkBuddy 首页：左侧导航、中间输入、任务与产物区域"></div>
+    <div class="shot-frame"><img data-src="images/quickstart-1.DGnw1yR0.webp" alt="WorkBuddy 首页：左侧导航、中间输入、任务与产物区域" loading="lazy" decoding="async"></div>
     <figcaption>WorkBuddy 首页：左侧导航、中间输入、任务与产物区域</figcaption>
   </figure>
       <div class="teach-panel">
@@ -290,7 +290,7 @@
     <h1>输入框不是聊天框，是任务说明书</h1>
     <div class="body"><div class="two-col wide-left">
       <figure class="shot big">
-    <div class="shot-frame"><img src="images/createtask-1.CJulLJlb.png" alt="创建任务界面：输入目标、资料、输出格式和约束"></div>
+    <div class="shot-frame"><img data-src="images/createtask-1.CJulLJlb.webp" alt="创建任务界面：输入目标、资料、输出格式和约束" loading="lazy" decoding="async"></div>
     <figcaption>创建任务界面：输入目标、资料、输出格式和约束</figcaption>
   </figure>
       <div class="teach-panel">
@@ -322,15 +322,15 @@
     <h1>三种模式对应三种课堂动作</h1>
     <div class="body"><div class="image-grid three tall">
       <figure class="shot ">
-    <div class="shot-frame"><img src="images/image-2.C-gnnvPF.png" alt="Ask：问清楚、读文件、解释问题"></div>
+    <div class="shot-frame"><img data-src="images/image-2.C-gnnvPF.webp" alt="Ask：问清楚、读文件、解释问题" loading="lazy" decoding="async"></div>
     <figcaption>Ask：问清楚、读文件、解释问题</figcaption>
   </figure>
       <figure class="shot ">
-    <div class="shot-frame"><img src="images/image-4.BJkeZ-JN.png" alt="Plan：先规划多步骤，再等确认"></div>
+    <div class="shot-frame"><img data-src="images/image-4.BJkeZ-JN.webp" alt="Plan：先规划多步骤，再等确认" loading="lazy" decoding="async"></div>
     <figcaption>Plan：先规划多步骤，再等确认</figcaption>
   </figure>
       <figure class="shot ">
-    <div class="shot-frame"><img src="images/image-3.CHcjfxwi.png" alt="Craft：直接生成或修改文件"></div>
+    <div class="shot-frame"><img data-src="images/image-3.CHcjfxwi.webp" alt="Craft：直接生成或修改文件" loading="lazy" decoding="async"></div>
     <figcaption>Craft：直接生成或修改文件</figcaption>
   </figure>
     </div>
@@ -360,7 +360,7 @@
     <h1>第11页修正：任务区只对应任务管理</h1>
     <div class="body"><div class="two-col wide-left">
       <figure class="shot big">
-    <div class="shot-frame"><img src="images/task-1.H0Sit-qs.png" alt="任务列表与新建任务：这一页只讲左侧任务管理"></div>
+    <div class="shot-frame"><img data-src="images/task-1.H0Sit-qs.webp" alt="任务列表与新建任务：这一页只讲左侧任务管理" loading="lazy" decoding="async"></div>
     <figcaption>任务列表与新建任务：这一页只讲左侧任务管理</figcaption>
   </figure>
       <div class="teach-panel">
@@ -388,7 +388,7 @@
     <h1>第12页修正：对话页只讲继续修改</h1>
     <div class="body"><div class="two-col wide-left">
       <figure class="shot big">
-    <div class="shot-frame"><img src="images/conversation-1.BOk_JNJk.png" alt="对话过程：继续补充要求、基于上下文修改"></div>
+    <div class="shot-frame"><img data-src="images/conversation-1.BOk_JNJk.webp" alt="对话过程：继续补充要求、基于上下文修改" loading="lazy" decoding="async"></div>
     <figcaption>对话过程：继续补充要求、基于上下文修改</figcaption>
   </figure>
       <div class="teach-panel">
@@ -551,7 +551,7 @@
     <h1>把重复介绍自己，变成长期资料资产</h1>
     <div class="body"><div class="two-col wide-left">
       <figure class="shot big">
-    <div class="shot-frame"><img src="images/knowledge-base-18.Cy1mJrGd.png" alt="知识库资料入口：只放和个人展业有关的资料"></div>
+    <div class="shot-frame"><img data-src="images/knowledge-base-18.Cy1mJrGd.webp" alt="知识库资料入口：只放和个人展业有关的资料" loading="lazy" decoding="async"></div>
     <figcaption>知识库资料入口：只放和个人展业有关的资料</figcaption>
   </figure>
       <div class="teach-panel">
@@ -653,7 +653,7 @@
     <div class="card-body">不用的词、避免的营销方式、偏好风格</div>
   </div></div>
       <figure class="shot big">
-    <div class="shot-frame"><img src="images/knowledge-base-21.BdRZdP93.png" alt="知识库配置：资料要少量、清晰、可验证"></div>
+    <div class="shot-frame"><img data-src="images/knowledge-base-21.BdRZdP93.webp" alt="知识库配置：资料要少量、清晰、可验证" loading="lazy" decoding="async"></div>
     <figcaption>知识库配置：资料要少量、清晰、可验证</figcaption>
   </figure>
     </div></div>
@@ -874,7 +874,7 @@ Skill 目标：
 自动触发这个 Skill。</pre>
   </div>
       <div><figure class="shot big">
-    <div class="shot-frame"><img src="images/skill-2.DIhokP9-.png" alt="Skill 详情页：只对应创建 Skill 这一步"></div>
+    <div class="shot-frame"><img data-src="images/skill-2.DIhokP9-.webp" alt="Skill 详情页：只对应创建 Skill 这一步" loading="lazy" decoding="async"></div>
     <figcaption>Skill 详情页：只对应创建 Skill 这一步</figcaption>
   </figure>
       <div class="card accent">
@@ -938,15 +938,15 @@ Skill 目标：
     <h1>Skill 页面只讲三个动作</h1>
     <div class="body"><div class="image-grid three">
       <figure class="shot ">
-    <div class="shot-frame"><img src="images/skill-2.DIhokP9-.png" alt="看详情：目标、说明、来源"></div>
+    <div class="shot-frame"><img data-src="images/skill-2.DIhokP9-.webp" alt="看详情：目标、说明、来源" loading="lazy" decoding="async"></div>
     <figcaption>看详情：目标、说明、来源</figcaption>
   </figure>
       <figure class="shot ">
-    <div class="shot-frame"><img src="images/skill-4.Ce9uwHkT.png" alt="启用：只启用当前任务需要的 Skill"></div>
+    <div class="shot-frame"><img data-src="images/skill-4.Ce9uwHkT.webp" alt="启用：只启用当前任务需要的 Skill" loading="lazy" decoding="async"></div>
     <figcaption>启用：只启用当前任务需要的 Skill</figcaption>
   </figure>
       <figure class="shot ">
-    <div class="shot-frame"><img src="images/skilluninstall-20.Decy0AWJ.png" alt="管理：关闭旧版，保留版本记录"></div>
+    <div class="shot-frame"><img data-src="images/skilluninstall-20.Decy0AWJ.webp" alt="管理：关闭旧版，保留版本记录" loading="lazy" decoding="async"></div>
     <figcaption>管理：关闭旧版，保留版本记录</figcaption>
   </figure>
     </div></div>
@@ -1181,7 +1181,7 @@ Skill 目标：
     <div class="card-body">会做团队工作流</div>
   </div></div>
       <figure class="shot big">
-    <div class="shot-frame"><img src="images/auto-2.WrD5blOe.png" alt="自动化预告：只作为进阶地图，不在体验课展开"></div>
+    <div class="shot-frame"><img data-src="images/auto-2.WrD5blOe.webp" alt="自动化预告：只作为进阶地图，不在体验课展开" loading="lazy" decoding="async"></div>
     <figcaption>自动化预告：只作为进阶地图，不在体验课展开</figcaption>
   </figure>
     </div></div>
@@ -1207,8 +1207,19 @@ Skill 目标：
       b.addEventListener("click", () => go(i));
       nav.appendChild(b);
     });
+    function loadImagesAround(index){
+      const start = Math.max(0, index - 1);
+      const end = Math.min(slides.length - 1, index + 2);
+      for(let i = start; i <= end; i++){
+        slides[i].querySelectorAll("img[data-src]").forEach((img) => {
+          img.src = img.dataset.src;
+          img.removeAttribute("data-src");
+        });
+      }
+    }
     function go(index){
       current = Math.max(0, Math.min(slides.length - 1, index));
+      loadImagesAround(current);
       window.__currentSlideIndex = current;
       deck.style.transform = `translateX(${-current * 100}vw)`;
       Array.from(nav.children).forEach((b, i) => b.classList.toggle("active", i === current));
