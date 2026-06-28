@@ -466,6 +466,178 @@
       color:#7b8ea8;
       letter-spacing:.05em;
     }
+    .slide{
+      content-visibility:auto;
+      contain-intrinsic-size:100vw 100vh;
+    }
+    .top-controls{
+      position:fixed;
+      top:1.55vh;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:60;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 9px;
+      border:1px solid rgba(171,195,255,.75);
+      border-radius:999px;
+      background:rgba(255,255,255,.88);
+      box-shadow:0 10px 28px rgba(20,32,51,.13);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+    }
+    .top-controls button,
+    .jump-control{
+      min-height:34px;
+      border:1px solid #c6d6ef;
+      border-radius:999px;
+      background:#fff;
+      color:#21446f;
+      font:800 14px/1 var(--sans);
+      white-space:nowrap;
+    }
+    .top-controls button{
+      padding:0 14px;
+      cursor:pointer;
+    }
+    .top-controls button:hover,
+    .top-controls button:focus-visible{
+      border-color:#1f5eff;
+      color:#1f5eff;
+      outline:0;
+    }
+    .jump-control{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      padding:0 10px 0 13px;
+    }
+    .jump-control input{
+      width:54px;
+      height:26px;
+      border:1px solid #c6d6ef;
+      border-radius:999px;
+      text-align:center;
+      color:#142033;
+      font:800 14px/1 var(--mono);
+      background:#f7fbff;
+    }
+    .jump-control input:focus{
+      outline:2px solid rgba(31,94,255,.25);
+      border-color:#1f5eff;
+    }
+    .jump-control span{
+      color:#6b7d95;
+      font-family:var(--mono);
+    }
+    .thumb-backdrop{
+      position:fixed;
+      inset:0;
+      z-index:55;
+      background:rgba(12,24,42,.18);
+      backdrop-filter:blur(2px);
+      -webkit-backdrop-filter:blur(2px);
+    }
+    .thumb-panel{
+      position:fixed;
+      top:0;
+      right:0;
+      bottom:0;
+      width:min(480px,92vw);
+      z-index:70;
+      display:grid;
+      grid-template-rows:auto 1fr;
+      background:rgba(247,251,255,.97);
+      border-left:1px solid #c6d6ef;
+      box-shadow:-18px 0 42px rgba(20,32,51,.16);
+      transform:translateX(104%);
+      transition:transform .18s ease;
+    }
+    .thumb-panel.open{
+      transform:translateX(0);
+    }
+    .thumb-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:22px 22px 14px;
+      border-bottom:1px solid #d9e5f4;
+    }
+    .thumb-head strong{
+      display:block;
+      color:#142033;
+      font-size:22px;
+      line-height:1.1;
+    }
+    .thumb-head span{
+      display:block;
+      margin-top:6px;
+      color:#6b7d95;
+      font:800 13px/1 var(--mono);
+    }
+    .thumb-head button{
+      height:34px;
+      padding:0 14px;
+      border:1px solid #c6d6ef;
+      border-radius:999px;
+      background:#fff;
+      color:#21446f;
+      font:800 14px/1 var(--sans);
+      cursor:pointer;
+    }
+    .thumb-grid{
+      overflow:auto;
+      display:grid;
+      grid-template-columns:1fr;
+      align-content:start;
+      gap:10px;
+      padding:16px 18px 24px;
+    }
+    .thumb-card{
+      display:grid;
+      grid-template-columns:54px 1fr;
+      gap:12px;
+      width:100%;
+      min-height:86px;
+      padding:12px;
+      text-align:left;
+      border:1px solid #d5e1f0;
+      border-radius:16px;
+      background:#fff;
+      box-shadow:0 6px 16px rgba(20,32,51,.06);
+      cursor:pointer;
+    }
+    .thumb-card:hover,
+    .thumb-card:focus-visible{
+      border-color:#1f5eff;
+      outline:0;
+    }
+    .thumb-card.active{
+      border-color:#1f5eff;
+      background:#eaf2ff;
+      box-shadow:0 8px 22px rgba(31,94,255,.15);
+    }
+    .thumb-page{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:54px;
+      border-radius:14px;
+      background:#1f5eff;
+      color:#fff;
+      font:900 18px/1 var(--mono);
+    }
+    .thumb-title{
+      color:#142033;
+      font:850 18px/1.25 var(--sans);
+    }
+    .thumb-meta{
+      margin-top:8px;
+      color:#60748f;
+      font:750 13px/1.35 var(--sans);
+    }
     @media (max-height:800px){
       .slide{padding-top:4.1vh}
       .slide-top{height:3.8vh}
@@ -481,6 +653,33 @@
       .two-col > div:has(> .prompt-box + .prompt-box){
         height:min(100%,60vh);
         max-height:60vh;
+      }
+      .top-controls{
+        top:1.3vh;
+        gap:5px;
+        padding:5px 7px;
+        transform:translateX(-50%) scale(.88);
+      }
+    }
+    @media (max-width:760px){
+      .top-controls{
+        left:12px;
+        right:12px;
+        transform:none;
+        justify-content:center;
+      }
+      .top-controls button,
+      .jump-control{
+        font-size:12px;
+      }
+      .top-controls button{
+        padding:0 9px;
+      }
+      .jump-control{
+        padding:0 8px;
+      }
+      .jump-control input{
+        width:42px;
       }
     }
   </style>
@@ -1802,35 +2001,177 @@ Skill 目标：
     <h1>今天建立的是第一间 AI 办公室</h1>
     <div class="body"><p class="closing-copy">接下来真正有价值的部分，是把更多高频业务场景逐个跑通，把有效流程封装成 Skill，再通过持续测试和作业反馈不断更新。</p></div>
   </section></main>
+  <div class="top-controls" aria-label="PPT 控制">
+    <button type="button" id="thumbToggle">缩略图</button>
+    <label class="jump-control" for="jumpInput">
+      跳页
+      <input id="jumpInput" type="number" min="1" value="1" inputmode="numeric" aria-label="输入页码">
+      <span id="jumpTotal">/ 42</span>
+    </label>
+    <button type="button" id="jumpBtn">跳转</button>
+    <button type="button" id="fullBtn">全屏</button>
+  </div>
+  <div id="thumbBackdrop" class="thumb-backdrop" hidden></div>
+  <aside id="thumbPanel" class="thumb-panel" aria-hidden="true" aria-label="缩略图跳页">
+    <div class="thumb-head">
+      <div>
+        <strong>缩略图跳页</strong>
+        <span id="thumbCount">42 页</span>
+      </div>
+      <button type="button" id="thumbClose">关闭</button>
+    </div>
+    <div id="thumbGrid" class="thumb-grid"></div>
+  </aside>
   <div id="nav"></div>
-  <div id="hint">← → 翻页 · ESC 总览</div>
+  <div id="hint">← → 翻页 · ESC 缩略图</div>
   <script>
     const deck = document.getElementById("deck");
     const slides = Array.from(document.querySelectorAll(".slide"));
     const nav = document.getElementById("nav");
+    const jumpInput = document.getElementById("jumpInput");
+    const jumpTotal = document.getElementById("jumpTotal");
+    const jumpBtn = document.getElementById("jumpBtn");
+    const fullBtn = document.getElementById("fullBtn");
+    const thumbToggle = document.getElementById("thumbToggle");
+    const thumbBackdrop = document.getElementById("thumbBackdrop");
+    const thumbPanel = document.getElementById("thumbPanel");
+    const thumbClose = document.getElementById("thumbClose");
+    const thumbGrid = document.getElementById("thumbGrid");
+    const thumbCount = document.getElementById("thumbCount");
+    const thumbButtons = [];
     let current = 0;
+
+    jumpInput.max = String(slides.length);
+    jumpTotal.textContent = "/ " + slides.length;
+    thumbCount.textContent = slides.length + " 页";
+
     slides.forEach((_, i) => {
       const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", `跳到第 ${i + 1} 页`);
       b.addEventListener("click", () => go(i));
       nav.appendChild(b);
     });
+
+    slides.forEach((slide, i) => {
+      const title = slide.querySelector("h1")?.textContent?.replace(/\s+/g, " ").trim() || `第 ${i + 1} 页`;
+      const label = slide.querySelector(".eyebrow")?.textContent?.trim() || "课程页";
+      const imageCount = slide.querySelectorAll("img").length;
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "thumb-card";
+      button.dataset.slide = String(i);
+      button.innerHTML = `
+        <span class="thumb-page">${String(i + 1).padStart(2, "0")}</span>
+        <span>
+          <span class="thumb-title">${escapeHtml(title)}</span>
+          <span class="thumb-meta">${escapeHtml(label)}${imageCount ? " · " + imageCount + " 张图" : ""}</span>
+        </span>
+      `;
+      button.addEventListener("click", () => {
+        go(i);
+        closeThumbPanel();
+      });
+      thumbButtons.push(button);
+      thumbGrid.appendChild(button);
+    });
+
+    function escapeHtml(value){
+      return String(value).replace(/[&<>"']/g, (ch) => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+      })[ch]);
+    }
+
+    function setImagePriority(){
+      slides.forEach((slide, i) => {
+        slide.querySelectorAll("img").forEach((img) => {
+          img.decoding = "async";
+          img.loading = Math.abs(i - current) <= 1 ? "eager" : "lazy";
+          img.fetchPriority = i === current ? "high" : "low";
+        });
+      });
+    }
+
     function go(index){
       current = Math.max(0, Math.min(slides.length - 1, index));
       window.__currentSlideIndex = current;
       deck.style.transform = `translateX(${-current * 100}vw)`;
       Array.from(nav.children).forEach((b, i) => b.classList.toggle("active", i === current));
+      thumbButtons.forEach((b, i) => b.classList.toggle("active", i === current));
+      jumpInput.value = String(current + 1);
+      setImagePriority();
       history.replaceState(null, "", "#" + (current + 1));
     }
+
+    function jumpToInput(){
+      const page = Number.parseInt(jumpInput.value, 10);
+      if(Number.isFinite(page)) go(page - 1);
+    }
+
+    function openThumbPanel(){
+      thumbBackdrop.hidden = false;
+      thumbPanel.setAttribute("aria-hidden", "false");
+      requestAnimationFrame(() => {
+        thumbPanel.classList.add("open");
+        thumbButtons[current]?.scrollIntoView({block:"center"});
+      });
+    }
+
+    function closeThumbPanel(){
+      thumbPanel.classList.remove("open");
+      thumbPanel.setAttribute("aria-hidden", "true");
+      thumbBackdrop.hidden = true;
+    }
+
+    function toggleThumbPanel(){
+      if(thumbPanel.classList.contains("open")) closeThumbPanel();
+      else openThumbPanel();
+    }
+
+    function toggleFullscreen(){
+      if(!document.fullscreenElement){
+        document.documentElement.requestFullscreen?.();
+      }else{
+        document.exitFullscreen?.();
+      }
+    }
+
+    function updateFullscreenButton(){
+      fullBtn.textContent = document.fullscreenElement ? "退出全屏" : "全屏";
+    }
+
     window.go = go;
     window.__setLowPowerMode = () => {};
+    jumpBtn.addEventListener("click", jumpToInput);
+    jumpInput.addEventListener("keydown", (e) => {
+      if(e.key === "Enter") jumpToInput();
+    });
+    fullBtn.addEventListener("click", toggleFullscreen);
+    document.addEventListener("fullscreenchange", updateFullscreenButton);
+    thumbToggle.addEventListener("click", toggleThumbPanel);
+    thumbClose.addEventListener("click", closeThumbPanel);
+    thumbBackdrop.addEventListener("click", closeThumbPanel);
     document.addEventListener("keydown", (e) => {
+      const tag = document.activeElement?.tagName;
+      const isTyping = tag === "INPUT" || tag === "TEXTAREA";
+      if(isTyping) return;
       if(e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") go(current + 1);
       if(e.key === "ArrowLeft" || e.key === "PageUp") go(current - 1);
       if(e.key === "Home") go(0);
       if(e.key === "End") go(slides.length - 1);
+      if(e.key === "Escape"){
+        if(document.fullscreenElement) return;
+        e.preventDefault();
+        toggleThumbPanel();
+      }
     });
     const start = Number(location.hash.replace("#", "")) - 1;
     go(Number.isFinite(start) && start >= 0 ? start : 0);
+    updateFullscreenButton();
   </script>
 </body>
 </html>
