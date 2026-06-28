@@ -55,6 +55,79 @@
     .three-prompts .prompt-box{padding:1.35vh 1vw}
     .three-prompts pre{font-size:clamp(14px,.9vw,19px);line-height:1.42}
     .bottom-note{position:absolute;left:5vw;right:5vw;bottom:3.2vh;color:var(--muted);font-size:clamp(15px,.95vw,19px)}
+    .route-map{height:min(100%,68vh);display:grid;grid-template-rows:auto 1fr auto;gap:1.5vh}
+    .route-hero{display:grid;grid-template-columns:clamp(66px,5.8vw,104px) 1fr;gap:1.2vw;align-items:center;background:var(--blue);color:#fff;border-radius:18px;padding:2.3vh 1.6vw;box-shadow:var(--shadow)}
+    .route-num{font:800 clamp(42px,4.4vw,82px)/.9 var(--mono);color:rgba(255,255,255,.28)}
+    .route-hero h2{margin:0;font-size:clamp(27px,2vw,42px);line-height:1.16}
+    .route-hero p{margin:.8vh 0 0;font-size:clamp(17px,1.05vw,22px);line-height:1.45;color:rgba(255,255,255,.78)}
+    .route-lane{display:grid;grid-template-columns:repeat(4,1fr);gap:1vw;min-height:0}
+    .route-step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:2.2vh 1.2vw;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between}
+    .route-step .step-tag{font:800 clamp(13px,.85vw,16px)/1 var(--mono);letter-spacing:.08em;color:var(--blue);text-transform:uppercase}
+    .route-step h3{margin:1.5vh 0 1vh;font-size:clamp(22px,1.65vw,34px);line-height:1.18}
+    .route-step p{margin:0;color:var(--muted);font-size:clamp(16px,1.02vw,22px);line-height:1.5}
+    .route-end{display:grid;grid-template-columns:auto 1fr;gap:1vw;align-items:center;border:1px solid var(--line);border-radius:16px;background:#fff;padding:1.7vh 1.3vw;color:var(--muted);font-size:clamp(17px,1.08vw,23px);line-height:1.45}
+    .route-end strong{color:var(--ink)}
+    .decision-board{height:min(100%,68vh);display:grid;grid-template-rows:auto 1fr;gap:1.5vh}
+    .cue-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1vw}
+    .cue-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.8vh 1.2vw;box-shadow:var(--shadow)}
+    .cue-card strong{display:block;font-size:clamp(19px,1.3vw,28px);line-height:1.2}
+    .cue-card span{display:block;margin-top:.8vh;color:var(--muted);font-size:clamp(15px,.95vw,20px);line-height:1.42}
+    .decision-compare{display:grid;grid-template-columns:1fr clamp(46px,4vw,72px) 1fr;gap:1vw;align-items:stretch;min-height:0}
+    .decision-panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:2.4vh 1.5vw;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:0}
+    .decision-panel.accent{background:var(--blue);border-color:var(--blue);color:#fff}
+    .decision-label{font:800 clamp(13px,.9vw,17px)/1 var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+    .decision-panel.accent .decision-label,.decision-panel.accent p,.decision-panel.accent li{color:rgba(255,255,255,.78)}
+    .decision-panel h2{margin:1.4vh 0 1.2vh;font-size:clamp(30px,2.4vw,52px);line-height:1.08}
+    .decision-panel p{margin:0;color:var(--muted);font-size:clamp(17px,1.05vw,23px);line-height:1.5}
+    .decision-panel ul{margin:auto 0 0;padding:0;list-style:none;display:grid;gap:1vh}
+    .decision-panel li{color:var(--muted);font-size:clamp(16px,1vw,21px);line-height:1.38;border-top:1px solid rgba(100,116,139,.22);padding-top:1vh}
+    .decision-panel.accent li{border-color:rgba(255,255,255,.18)}
+    .decision-arrow{display:flex;align-items:center;justify-content:center;color:var(--blue);font:800 clamp(32px,3.5vw,70px)/1 var(--mono)}
+    .workflow-board{height:min(100%,68vh);display:grid;grid-template-rows:1fr auto;gap:1.6vh}
+    .workflow-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1vw;align-items:stretch;min-height:0}
+    .workflow-step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:2.4vh 1.25vw;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:0}
+    .workflow-step.accent{background:var(--blue);border-color:var(--blue);color:#fff}
+    .workflow-no{font:800 clamp(32px,3vw,58px)/1 var(--mono);color:#c7d2fe}
+    .workflow-step.accent .workflow-no{color:rgba(255,255,255,.32)}
+    .workflow-step h3{margin:1.7vh 0 1vh;font-size:clamp(25px,1.9vw,40px);line-height:1.12}
+    .workflow-step p{margin:0;color:var(--muted);font-size:clamp(16px,1vw,22px);line-height:1.5}
+    .workflow-step.accent p,.workflow-step.accent .workflow-output{color:rgba(255,255,255,.82)}
+    .workflow-output{margin-top:auto;border-top:1px solid rgba(100,116,139,.22);padding-top:1.2vh;color:var(--muted);font-size:clamp(15px,.92vw,19px);line-height:1.42}
+    .workflow-step.accent .workflow-output{border-color:rgba(255,255,255,.2)}
+    .workflow-note{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.8vh 1.3vw;font-size:clamp(17px,1.08vw,23px);line-height:1.44;color:var(--muted);box-shadow:var(--shadow)}
+    .workflow-note strong{color:var(--ink)}
+    .privacy-board{height:min(100%,68vh);display:grid;grid-template-columns:1.02fr .98fr;gap:1.2vw;min-height:0}
+    .privacy-stack{display:grid;grid-template-rows:1fr 1fr;gap:1.2vh;min-height:0}
+    .privacy-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:2.4vh 1.4vw;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between;min-height:0}
+    .privacy-card.allow{background:var(--blue);border-color:var(--blue);color:#fff}
+    .privacy-card h2{margin:0 0 1.4vh;font-size:clamp(27px,2vw,44px);line-height:1.12}
+    .privacy-card p{margin:0;color:var(--muted);font-size:clamp(16px,1vw,22px);line-height:1.45}
+    .privacy-card.allow p{color:rgba(255,255,255,.82)}
+    .token-grid{display:flex;flex-wrap:wrap;gap:.8vh .55vw}
+    .token{border:1px solid rgba(100,116,139,.28);border-radius:999px;background:#f8fafc;padding:.75vh .75vw;font-size:clamp(15px,.92vw,19px);line-height:1;color:var(--muted)}
+    .privacy-card.allow .token{border-color:rgba(255,255,255,.24);background:rgba(255,255,255,.12);color:#fff}
+    .rule-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:2.4vh 1.4vw;box-shadow:var(--shadow);display:grid;grid-template-rows:auto 1fr;gap:1.4vh;min-height:0}
+    .rule-card h2{margin:0;font-size:clamp(27px,2vw,44px);line-height:1.12}
+    .rule-steps{display:grid;grid-template-rows:repeat(3,1fr);gap:1vh;min-height:0}
+    .rule-step{display:grid;grid-template-columns:clamp(42px,3.6vw,62px) 1fr;gap:1vw;align-items:center;border-top:1px solid var(--line);padding-top:1vh}
+    .rule-step:first-child{border-top:0;padding-top:0}
+    .rule-index{font:800 clamp(28px,2.4vw,48px)/1 var(--mono);color:#c7d2fe}
+    .rule-step strong{display:block;font-size:clamp(19px,1.28vw,28px);line-height:1.18}
+    .rule-step span{display:block;margin-top:.5vh;color:var(--muted);font-size:clamp(15px,.95vw,20px);line-height:1.42}
+    @media (max-height:800px){
+      .decision-board{height:min(100%,60vh);gap:1vh}
+      .cue-strip{gap:.8vw}
+      .cue-card{padding:1.15vh 1vw}
+      .cue-card strong{font-size:clamp(17px,1.2vw,23px)}
+      .cue-card span{font-size:clamp(13px,.9vw,17px);line-height:1.32;margin-top:.5vh}
+      .decision-compare{gap:.8vw}
+      .decision-panel{padding:1.55vh 1.15vw}
+      .decision-panel h2{font-size:clamp(25px,2.1vw,42px);margin:.9vh 0 .7vh}
+      .decision-panel p{font-size:clamp(14px,.95vw,18px);line-height:1.36}
+      .decision-panel ul{gap:.55vh}
+      .decision-panel li{font-size:clamp(13px,.9vw,17px);line-height:1.25;padding-top:.55vh}
+      .decision-label{font-size:clamp(12px,.85vw,15px)}
+    }
     #nav{position:fixed;left:50%;bottom:2vh;transform:translateX(-50%);display:flex;gap:7px;z-index:20}
     #nav button{width:8px;height:8px;border-radius:999px;border:0;background:#cbd5e1;padding:0}
     #nav button.active{width:26px;background:var(--blue)}
@@ -86,33 +159,51 @@
       <div class="eyebrow">课程地图</div>
       <div class="page-no">02 / 42</div>
     </div>
-    <div class="time-pill">0-180分钟</div>
-    <h1>3小时实操路线</h1>
-    <div class="body"><div class="grid cols-4"><div class="card ">
-    <div class="card-title">0-15 痛点定位</div>
-    <div class="card-body">看见 6 个常见卡点，写下一个真实业务问题</div>
-  </div><div class="card ">
-    <div class="card-title">15-35 核心操作</div>
-    <div class="card-body">Ask / Plan / Craft、工作目录、任务产物</div>
-  </div><div class="card ">
-    <div class="card-title">35-55 任务指令</div>
-    <div class="card-body">六格任务卡、多轮优化、结果检查</div>
-  </div><div class="card ">
-    <div class="card-title">55-80 项目与知识库</div>
-    <div class="card-body">项目指令、资料组织、风格说明书</div>
-  </div><div class="card ">
-    <div class="card-title">90-125 场景一</div>
-    <div class="card-body">知识库驱动朋友圈工作流</div>
-  </div><div class="card ">
-    <div class="card-title">125-145 Skill</div>
-    <div class="card-body">朋友圈文案助手 V1</div>
-  </div><div class="card ">
-    <div class="card-title">145-170 场景二</div>
-    <div class="card-body">整理、话术、复访、复盘一套跑通</div>
-  </div><div class="card ">
-    <div class="card-title">170-180 收束</div>
-    <div class="card-body">现场验收、每天 5 分钟沉淀资产、7天行动</div>
-  </div></div></div>
+    <div class="time-pill">学习路线</div>
+    <h1>今天的实操路线</h1>
+    <div class="body"><div class="route-map">
+      <div class="route-hero">
+        <div class="route-num">01</div>
+        <div>
+          <h2>从“会问 AI”到“有自己的展业工作流”</h2>
+          <p>这节课只围绕真实业务动作展开：先找问题，再学操作，最后做出可以继续复用的成果。</p>
+        </div>
+      </div>
+      <div class="route-lane">
+        <div class="route-step">
+          <div>
+            <div class="step-tag">Problem</div>
+            <h3>看见卡点</h3>
+            <p>把客户资料、朋友圈内容、客户跟进里的真实问题说清楚。</p>
+          </div>
+        </div>
+        <div class="route-step">
+          <div>
+            <div class="step-tag">Operate</div>
+            <h3>学会操作</h3>
+            <p>认识任务、结果、知识库、Skill，知道每个界面用来干什么。</p>
+          </div>
+        </div>
+        <div class="route-step">
+          <div>
+            <div class="step-tag">Create</div>
+            <h3>做出成果</h3>
+            <p>现场完成朋友圈文案和客户跟进方案，而不是只看演示。</p>
+          </div>
+        </div>
+        <div class="route-step">
+          <div>
+            <div class="step-tag">Reuse</div>
+            <h3>沉淀方法</h3>
+            <p>把满意样本、提示词和工作规则变成下次可直接调用的资产。</p>
+          </div>
+        </div>
+      </div>
+      <div class="route-end">
+        <strong>最终带走</strong>
+        <span>一个 WorkBuddy 使用框架、一个朋友圈 Skill V1、一套客户跟进提示词，以及一条课后继续迭代的行动路径。</span>
+      </div>
+    </div></div>
   </section>
 <section class="slide ">
     <div class="slide-top">
@@ -859,18 +950,47 @@
       <div class="eyebrow">Skill 判断</div>
       <div class="page-no">28 / 42</div>
     </div>
-    <div class="time-pill">125-130分钟</div>
+    <div class="time-pill">是否值得做成 Skill</div>
     <h1>任务解决一次问题，Skill 解决重复问题</h1>
-    <div class="body"><div class="grid cols-3"><div class="card ">
-    <div class="card-title">每周会重复出现</div>
-    <div class="card-body">朋友圈内容、客户跟进、面谈复盘</div>
-  </div><div class="card ">
-    <div class="card-title">输入输出稳定</div>
-    <div class="card-body">主题、客户、表达目标、交付格式基本固定</div>
-  </div><div class="card ">
-    <div class="card-title">判断规则能说清</div>
-    <div class="card-body">能描述流程、边界和结果检查标准</div>
-  </div></div></div>
+    <div class="body"><div class="decision-board">
+      <div class="cue-strip">
+        <div class="cue-card">
+          <strong>每周都会出现</strong>
+          <span>朋友圈内容、客户跟进、面谈复盘，不是偶尔一次的临时需求。</span>
+        </div>
+        <div class="cue-card">
+          <strong>输入输出稳定</strong>
+          <span>主题、客户状态、表达目标、交付格式基本固定。</span>
+        </div>
+        <div class="cue-card">
+          <strong>判断规则能说清</strong>
+          <span>能描述流程、边界、禁区和结果检查标准。</span>
+        </div>
+      </div>
+      <div class="decision-compare">
+        <div class="decision-panel">
+          <div class="decision-label">Task</div>
+          <h2>只解决这一次</h2>
+          <p>适合临时问题。你把背景说清楚，WorkBuddy 生成一次结果，结果满意后可以保存。</p>
+          <ul>
+            <li>例：今天写一条养老主题朋友圈</li>
+            <li>例：针对某个客户生成三句微信回复</li>
+            <li>重点：把这一次交付做好</li>
+          </ul>
+        </div>
+        <div class="decision-arrow">→</div>
+        <div class="decision-panel accent">
+          <div class="decision-label">Skill</div>
+          <h2>把方法固化下来</h2>
+          <p>适合重复动作。把目标、流程、风格和检查标准写进 Skill，下次直接触发。</p>
+          <ul>
+            <li>例：我的专属朋友圈文案助手</li>
+            <li>例：客户复访准备助手</li>
+            <li>重点：让好方法下次还能复用</li>
+          </ul>
+        </div>
+      </div>
+    </div></div>
   </section>
 <section class="slide ">
     <div class="slide-top">
@@ -966,8 +1086,8 @@ Skill 目标：
     <h1>Skill 页面只讲三个动作</h1>
     <div class="body"><div class="image-grid three">
       <figure class="shot ">
-    <div class="shot-frame"><img src="images/skill-2.DIhokP9-.webp" alt="看详情：目标、说明、来源" loading="lazy" decoding="async"></div>
-    <figcaption>看详情：目标、说明、来源</figcaption>
+    <div class="shot-frame"><img src="images/skill-2.DIhokP9-.webp" alt="创建技能：点击添加技能，选择创建技能" loading="lazy" decoding="async"></div>
+    <figcaption>创建技能：点击添加技能，选择创建技能</figcaption>
   </figure>
       <figure class="shot ">
     <div class="shot-frame"><img src="images/skill-4.Ce9uwHkT.webp" alt="启用：只启用当前任务需要的 Skill" loading="lazy" decoding="async"></div>
@@ -984,41 +1104,93 @@ Skill 目标：
       <div class="eyebrow">客户跟进工作流</div>
       <div class="page-no">32 / 42</div>
     </div>
-    <div class="time-pill">进入场景二前</div>
+    <div class="time-pill">一套跟进闭环</div>
     <h1>AI 帮你完成 4 件事</h1>
-    <div class="body"><div class="grid cols-4"><div class="card accent">
-    <div class="card-title">整理</div>
-    <div class="card-body">把零散信息整理成客户快照和关键线索</div>
-  </div><div class="card ">
-    <div class="card-title">话术</div>
-    <div class="card-body">根据客户状态生成破冰、探询和邀约表达</div>
-  </div><div class="card ">
-    <div class="card-title">复访</div>
-    <div class="card-body">自动回顾上次进展，明确本次沟通目标</div>
-  </div><div class="card ">
-    <div class="card-title">复盘</div>
-    <div class="card-body">把每次沟通变成可复用经验和下一次行动</div>
-  </div></div></div>
+    <div class="body"><div class="workflow-board">
+      <div class="workflow-steps">
+        <div class="workflow-step accent">
+          <div class="workflow-no">01</div>
+          <h3>整理</h3>
+          <p>把聊天记录、客户反馈和已知信息整理成客户快照。</p>
+          <div class="workflow-output">产物：已知事实、客户表达、信息缺口、关键线索</div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-no">02</div>
+          <h3>话术</h3>
+          <p>根据客户状态生成破冰、探询、邀约三类微信表达。</p>
+          <div class="workflow-output">产物：温和复联、需求探询、下一步邀约</div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-no">03</div>
+          <h3>复访</h3>
+          <p>回顾上次沟通进展，明确本次联系要验证什么。</p>
+          <div class="workflow-output">产物：本次目标、可问问题、不同反馈下的动作</div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-no">04</div>
+          <h3>复盘</h3>
+          <p>把一次沟通沉淀为下次可复用的方法和经验。</p>
+          <div class="workflow-output">产物：有效表达、客户顾虑、下一次跟进建议</div>
+        </div>
+      </div>
+      <div class="workflow-note"><strong>课堂做法：</strong>先用匿名客户资料跑一遍，再把生成结果改成自己的表达方式，最后保存成后续跟进样本。</div>
+    </div></div>
   </section>
 <section class="slide ">
     <div class="slide-top">
       <div class="eyebrow">隐私规则</div>
       <div class="page-no">33 / 42</div>
     </div>
-    <div class="time-pill">145-150分钟</div>
+    <div class="time-pill">先匿名，再输入</div>
     <h1>客户资料必须先匿名化</h1>
-    <div class="body"><div class="two-col">
-      <div class="grid cols-1"><div class="card accent">
-    <div class="card-title">可以输入</div>
-    <div class="card-body">年龄段、家庭阶段、明确顾虑、沟通状态</div>
-  </div><div class="card ">
-    <div class="card-title">不要输入</div>
-    <div class="card-body">姓名、电话、身份证、地址、保单号、银行卡、健康细节</div>
-  </div></div>
-      <div class="card ">
-    <div class="card-title">重要提醒</div>
-    <div class="card-body">保险客户资料更适合先进行匿名化和必要信息最小化。项目资料可能被任务引用，也可能被协作项目成员共享。</div>
-  </div>
+    <div class="body"><div class="privacy-board">
+      <div class="privacy-stack">
+        <div class="privacy-card allow">
+          <div>
+            <h2>可以输入</h2>
+            <p>只保留完成分析必需的信息。</p>
+          </div>
+          <div class="token-grid">
+            <span class="token">年龄段</span>
+            <span class="token">家庭阶段</span>
+            <span class="token">明确顾虑</span>
+            <span class="token">沟通状态</span>
+            <span class="token">已确认事实</span>
+          </div>
+        </div>
+        <div class="privacy-card">
+          <div>
+            <h2>不要输入</h2>
+            <p>任何可以直接识别客户身份或涉及敏感隐私的信息。</p>
+          </div>
+          <div class="token-grid">
+            <span class="token">姓名</span>
+            <span class="token">电话</span>
+            <span class="token">身份证</span>
+            <span class="token">地址</span>
+            <span class="token">保单号</span>
+            <span class="token">银行卡</span>
+            <span class="token">健康细节</span>
+          </div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <h2>输入前先做三步</h2>
+        <div class="rule-steps">
+          <div class="rule-step">
+            <div class="rule-index">1</div>
+            <div><strong>替换身份信息</strong><span>把真实姓名改成客户A、客户B，把具体地址改成城市或区域。</span></div>
+          </div>
+          <div class="rule-step">
+            <div class="rule-index">2</div>
+            <div><strong>删掉无关细节</strong><span>只留下影响沟通判断的事实，不把完整聊天记录原样丢进去。</span></div>
+          </div>
+          <div class="rule-step">
+            <div class="rule-index">3</div>
+            <div><strong>最小化使用资料</strong><span>项目资料可能被任务引用，也可能被协作项目成员共享。</span></div>
+          </div>
+        </div>
+      </div>
     </div></div>
   </section>
 <section class="slide ">
