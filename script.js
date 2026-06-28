@@ -528,12 +528,17 @@
     const slide = slides[16];
     const pair = slide?.querySelector(".two-col");
     if(!pair || pair.classList.contains("compare-enhanced")) return;
+    slide.classList.add("compare-slide");
     pair.classList.add("compare-enhanced");
     const boxes = Array.from(pair.querySelectorAll(".prompt-box"));
     if(boxes.length < 2) return;
     addTags(boxes[0],["目标不清","资料缺失","对象不明","没有验收标准"]);
     addTags(boxes[1],["目标清楚","资料明确","步骤清晰","边界完整"]);
-    const button = el("button","upgrade-task","任务升级");
+    const button = el("button","upgrade-task",`
+      <span>补齐任务卡</span>
+      <b>6 格</b>
+      <i>→</i>
+    `);
     button.type = "button";
     button.setAttribute("aria-label","高亮优化后的任务");
     const reasons = el("div","compare-reasons",`
@@ -815,13 +820,38 @@
     if(title) title.textContent = "今天你已经搭好了第一间 AI 办公室";
     if(!body || body.querySelector(".closing-actions")) return;
     const copy = body.querySelector(".closing-copy");
-    const actions = el("div","closing-actions",["继续补资料","继续做 Skill","继续跑业务场景","继续复盘优化"].map((item) => `<span>${item}</span>`).join(""));
-    const visual = el("div","closing-office",`
-      <div class="office-window">
-        <div class="office-title">你的展业工作台</div>
-        <div class="office-grid-mini">
-          <span>资料</span><span>任务</span><span>Skill</span><span>复盘</span>
+    const actions = el("div","closing-actions",[
+      ["继续补资料","个人介绍、客户画像、朋友圈样本"],
+      ["继续做 Skill","把高频任务沉淀成固定方法"],
+      ["继续跑业务场景","朋友圈、跟进、复访、复盘"],
+      ["继续复盘优化","用反馈更新你的 AI 工作流"]
+    ].map(([titleText, desc]) => `<span><b>${titleText}</b><em>${desc}</em></span>`).join(""));
+    const visual = el("div","closing-office closing-finale",`
+      <div class="closing-finale-card">
+        <div class="closing-finale-head">
+          <span>课后行动</span>
+          <strong>7 天把第一版跑顺</strong>
         </div>
+        <div class="closing-loop">
+          <div><b>资料</b><span>先补齐</span></div>
+          <i></i>
+          <div><b>Task</b><span>先跑通</span></div>
+          <i></i>
+          <div><b>Skill</b><span>再固化</span></div>
+          <i></i>
+          <div><b>复盘</b><span>持续改</span></div>
+        </div>
+        <div class="closing-sprint">
+          <div><span>Day 1-2</span><b>整理资料库</b></div>
+          <div><span>Day 3-4</span><b>跑朋友圈场景</b></div>
+          <div><span>Day 5-6</span><b>跑客户跟进场景</b></div>
+          <div><span>Day 7</span><b>复盘成 Skill</b></div>
+        </div>
+        <figure class="closing-image-card">
+          <img src="images/cover-ai-office.webp" alt="WorkBuddy AI 工作流视觉" loading="lazy" decoding="async">
+          <figcaption>从一次实操，走向长期可复用的展业工作流</figcaption>
+        </figure>
+        <div class="closing-final-line">每天只推进一个高频场景，让 WorkBuddy 龙虾越来越懂你的业务。</div>
       </div>
     `);
     body.classList.add("closing-layout");
