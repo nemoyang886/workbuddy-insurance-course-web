@@ -302,17 +302,21 @@ figcaption{
 
 .slide.template-prompt .body{
   display:grid;
-  grid-template-columns:minmax(220px,.34fr) minmax(0,1fr);
+  grid-template-columns:minmax(220px,.29fr) minmax(0,1fr);
   gap:1.35vw;
-  align-items:stretch;
+  align-items:start;
 }
 
 .prompt-brief-card{
   display:grid;
-  grid-template-rows:auto auto 1fr;
-  gap:1.2vh;
+  grid-template-rows:auto auto auto;
+  gap:1vh;
+  align-self:start;
+  height:auto;
+  max-height:100%;
   min-height:0;
-  padding:2vh 1.25vw;
+  overflow:auto;
+  padding:1.55vh 1.1vw;
   border:1px solid rgba(185,205,239,.92);
   border-radius:var(--wb-radius);
   background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(235,244,255,.88));
@@ -321,7 +325,7 @@ figcaption{
 
 .prompt-brief-card strong{
   display:block;
-  font-size:clamp(21px,1.45vw,30px);
+  font-size:clamp(18px,1.2vw,24px);
   line-height:1.18;
   color:var(--wb-ink);
 }
@@ -329,27 +333,28 @@ figcaption{
 .prompt-brief-card p{
   margin:0;
   color:var(--wb-muted);
-  font-size:clamp(15px,.95vw,19px);
+  font-size:clamp(14px,.85vw,17px);
   line-height:1.48;
 }
 
 .prompt-flow-mini{
   display:grid;
-  gap:.85vh;
+  gap:.62vh;
   align-content:start;
-  margin-top:1vh;
+  margin-top:.35vh;
 }
 
 .prompt-flow-mini span{
   display:flex;
   align-items:center;
   gap:.7vw;
-  min-height:42px;
-  padding:.9vh .85vw;
+  min-height:36px;
+  padding:.65vh .75vw;
   border:1px solid rgba(31,94,255,.18);
   border-radius:999px;
   background:#fff;
   color:#24466f;
+  font-size:clamp(13px,.82vw,16px);
   font-weight:850;
 }
 
@@ -369,8 +374,10 @@ figcaption{
 .prompt-workspace{
   min-width:0;
   min-height:0;
+  max-height:100%;
   display:grid;
   gap:1vw;
+  overflow:hidden;
 }
 
 .prompt-workspace > .two-col{
@@ -1130,14 +1137,15 @@ figcaption{
 }
 
 .slide.template-prompt .lesson-output{
-  bottom:-3.7vh;
+  display:none;
 }
 
 .prompt-result-mini{
   display:grid;
   gap:.5vh;
-  align-self:end;
-  padding:1.2vh .95vw;
+  align-self:auto;
+  margin-top:.25vh;
+  padding:.9vh .85vw;
   border:1px solid rgba(31,94,255,.16);
   border-radius:14px;
   background:#fff;

@@ -252,6 +252,7 @@
       const page = index + 1;
       const label = outputLabelMap[page];
       const body = slide.querySelector(".body");
+      if(slide.classList.contains("template-prompt")) return;
       if(!label || !body || body.querySelector(".lesson-output")) return;
       body.appendChild(el("div","lesson-output",escapeHtml(label)));
     });
