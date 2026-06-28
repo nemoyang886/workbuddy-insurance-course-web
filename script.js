@@ -68,6 +68,23 @@
     42:"本页产出：下一步迭代方向"
   };
 
+  const routeTakeaways = [
+    ["真实问题", "卡点清单", "一句业务需求"],
+    ["任务入口", "项目/知识库", "Ask Plan Craft"],
+    ["朋友圈文案", "跟进方案", "课堂产物"],
+    ["满意样本", "Skill V1", "7天行动"]
+  ];
+
+  const shotMarkerMap = {
+    5:["选择版本", "下载安装"],
+    7:["左侧导航", "输入任务"],
+    10:["写清任务", "看任务结果"],
+    12:["任务记录", "产物文件"],
+    29:["点添加技能", "选择创建技能"],
+    31:["更多菜单", "管理技能"],
+    41:["点添加", "设置自动化"]
+  };
+
   function text(el){
     return el ? el.textContent.replace(/\s+/g," ").trim() : "";
   }
@@ -161,19 +178,70 @@
       <span>跑通2个真实场景</span>
       <span>带走可复用工作流</span>
     `);
-    const visual = el("div","cover-visual",`
-      <div class="office-window">
-        <div class="office-title">保险展业 AI 办公室</div>
-        <div class="agent-core">WorkBuddy<br>龙虾</div>
-        <div class="office-grid-mini">
-          <span>任务</span><span>项目</span><span>知识库</span><span>Skill</span>
-        </div>
+    const visual = el("div","cover-visual ai-hero",`
+      <figure class="cover-hero-card">
+        <img src="images/cover-ai-office.webp" alt="保险顾问在 AI 工作台上操作 WorkBuddy 工作流" loading="eager" decoding="async" fetchpriority="high">
+        <figcaption>AI 工作台 · 保险顾问实操场景</figcaption>
+        <div class="hero-marker marker-one">任务</div>
+        <div class="hero-marker marker-two">知识库</div>
+        <div class="hero-marker marker-three">Skill</div>
+      </figure>
+      <div class="hero-image-note">
+        <strong>今天要跑通的不是工具演示</strong>
+        <span>是一个能持续复用的保险展业 AI 工作台。</span>
       </div>
     `);
     body.classList.add("cover-layout");
     left.insertBefore(tags, left.querySelector(".cover-grid"));
     body.appendChild(left);
     body.appendChild(visual);
+  }
+
+  function promptStepsFor(page, meta){
+    if(page === 35){
+      return [
+        ["事实整理", "把客户资料分成已知事实、明确表达和信息缺口"],
+        ["沟通分析", "只基于资料判断顾虑、关注点和待验证问题"],
+        ["复制执行", "只替换匿名客户资料和沟通记录"]
+      ];
+    }
+    if(page === 36){
+      return [
+        ["跟进话术", "生成温和复联、需求探询和邀约沟通"],
+        ["7天计划", "明确联系时间、目标和分支动作"],
+        ["结果检查", "验收事实边界、语气和可回复性"]
+      ];
+    }
+    return [
+      ["先看目标", meta[0]],
+      ["再改变量", meta[1]],
+      ["最后验收", meta[2]]
+    ];
+  }
+
+  function makePromptTeachPanel(page, meta){
+    const cards = promptStepsFor(page, meta).map(([title, desc], index) => `
+      <div class="prompt-step-card">
+        <span>${index + 1}</span>
+        <b>${escapeHtml(title)}</b>
+        <em>${escapeHtml(desc)}</em>
+      </div>
+    `).join("");
+    return el("div","prompt-teach-panel",cards);
+  }
+
+  function addShotMarkers(){
+    slides.forEach((slide, index) => {
+      const labels = shotMarkerMap[index + 1];
+      if(!labels) return;
+      slide.querySelectorAll(".shot-frame").forEach((frame) => {
+        if(frame.querySelector(".shot-callouts")) return;
+        const callouts = el("div","shot-callouts",labels.map((label, i) => `
+          <span class="shot-callout callout-${i + 1}"><b>${i + 1}</b>${escapeHtml(label)}</span>
+        `).join(""));
+        frame.appendChild(callouts);
+      });
+    });
   }
 
   function wrapPromptSlides(){
@@ -185,6 +253,7 @@
       const meta = promptMeta[page] || ["复制课堂提示词","替换括号里的个人资料","一个可直接使用的任务产物"];
       const workspace = el("div","prompt-workspace");
       Array.from(body.children).forEach((child) => workspace.appendChild(child));
+      workspace.insertBefore(makePromptTeachPanel(page, meta), workspace.firstChild);
       const brief = el("aside","prompt-brief-card",`
         <strong>本页解决什么问题</strong>
         <p>${escapeHtml(text(slide.querySelector("h1")))}</p>
@@ -217,6 +286,16 @@
           <span><b>本页产出</b>${escapeHtml(meta[2])}</span>
         `);
         box.insertBefore(tags, pre);
+      }
+      if(slide?.classList.contains("template-prompt") && !box.querySelector(".toggle-prompt")){
+        const toggle = el("button","toggle-prompt","展开完整提示词");
+        toggle.type = "button";
+        toggle.setAttribute("aria-label","展开或收起完整提示词");
+        toggle.addEventListener("click", () => {
+          const expanded = box.classList.toggle("is-expanded");
+          toggle.textContent = expanded ? "收起提示词" : "展开完整提示词";
+        });
+        box.appendChild(toggle);
       }
       if(box.querySelector(".copy-prompt")) return;
       const button = el("button","copy-prompt","复制提示词");
@@ -266,7 +345,13 @@
     const end = map.querySelector(".route-end strong");
     if(end) end.textContent = "今天最终带走";
     const steps = Array.from(map.querySelectorAll(".route-step"));
-    steps.forEach((step, index) => makeButtonLike(step, () => setActive(index), "查看学习路线阶段"));
+    steps.forEach((step, index) => {
+      if(!step.querySelector(".route-proof")){
+        const labels = routeTakeaways[index] || [];
+        step.appendChild(el("div","route-proof",labels.map((item) => `<span>${escapeHtml(item)}</span>`).join("")));
+      }
+      makeButtonLike(step, () => setActive(index), "查看学习路线阶段");
+    });
     function setActive(index){
       steps.forEach((step, i) => step.classList.toggle("is-active", i === index));
     }
@@ -402,14 +487,15 @@
     const body = slide?.querySelector(".body");
     const grid = body?.querySelector(".grid.cols-3");
     if(!body || !grid || body.querySelector(".task-builder")) return;
-    const examples = {
-      "做什么":"生成一条养老主题朋友圈",
-      "给什么":"个人介绍、朋友圈样本、目标客户资料",
-      "给谁":"35 至 50 岁的家庭客户",
-      "怎么做":"先给 3 个角度，确认后写正式文案",
-      "交付什么":"120 至 180 字朋友圈文案",
-      "怎样算完成":"自然、克制、不承诺收益、不直接推销"
-    };
+    const examples = [
+      ["做什么","生成一条养老主题朋友圈"],
+      ["给什么","个人介绍、朋友圈样本、目标客户资料"],
+      ["给谁","35 至 50 岁的家庭客户"],
+      ["怎么做","先给 3 个角度，确认后写正式文案"],
+      ["交付什么","120 至 180 字朋友圈文案"],
+      ["怎样算完成","自然、克制、不承诺收益、不直接推销"]
+    ];
+    const exampleMap = Object.fromEntries(examples);
     const inspector = el("aside","task-card-inspector");
     const builder = el("div","task-builder");
     body.replaceChild(builder, grid);
@@ -421,9 +507,17 @@
       cards.forEach((card, i) => card.classList.toggle("is-active", i === index));
       const title = text(cards[index].querySelector(".card-title"));
       inspector.innerHTML = `
-        <strong>保险顾问示例</strong>
+        <strong>保险顾问示例工单</strong>
         <h2>${escapeHtml(title)}</h2>
-        <p>${escapeHtml(examples[title] || text(cards[index].querySelector(".card-body")))}</p>
+        <p>${escapeHtml(exampleMap[title] || text(cards[index].querySelector(".card-body")))}</p>
+        <div class="sample-task-card">
+          ${examples.map(([key, value]) => `
+            <div class="sample-slot ${key === title ? "is-active" : ""}">
+              <b>${escapeHtml(key)}</b>
+              <span>${escapeHtml(value)}</span>
+            </div>
+          `).join("")}
+        </div>
       `;
     }
     setActive(0);
@@ -766,7 +860,7 @@
   }
 
   function addRevealIndexes(slide){
-    const items = slide.querySelectorAll(".card,.route-step,.cue-card,.workflow-step,.privacy-card,.rule-card,.shot,.prompt-box,.workflow-node,.angle-card,.optimizer-layer,.file-to-kb,.office-map-lines > div,.customer-snapshot > div,.task-structure span,.day-card,.ladder-card");
+    const items = slide.querySelectorAll(".card,.route-step,.cue-card,.workflow-step,.privacy-card,.rule-card,.shot,.prompt-box,.workflow-node,.angle-card,.optimizer-layer,.file-to-kb,.office-map-lines > div,.customer-snapshot > div,.task-structure span,.day-card,.ladder-card,.prompt-step-card,.route-proof span,.sample-slot,.shot-callout");
     items.forEach((item, index) => item.style.setProperty("--reveal-i", index));
   }
 
@@ -797,6 +891,7 @@
   enhanceAskPlanCraft();
   enhanceTaskCards();
   enhanceCompare();
+  addShotMarkers();
   enhanceFriendCircleFlow();
   enhanceTaskSkill();
   enhanceCustomerWorkflow();
