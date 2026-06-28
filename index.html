@@ -679,6 +679,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main id="deck"><section class="slide cover">
@@ -2101,6 +2102,7 @@ Skill 目标：
       jumpInput.value = String(current + 1);
       setImagePriority();
       history.replaceState(null, "", "#" + (current + 1));
+      window.dispatchEvent(new CustomEvent("workbuddy:slidechange", {detail:{current,total:slides.length}}));
     }
 
     function jumpToInput(){
@@ -2169,5 +2171,6 @@ Skill 目标：
     go(Number.isFinite(start) && start >= 0 ? start : 0);
     updateFullscreenButton();
   </script>
+  <script src="script.js"></script>
 </body>
 </html>
