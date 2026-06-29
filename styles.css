@@ -2299,6 +2299,12 @@ figcaption{
   backdrop-filter:blur(10px);
 }
 
+.closing-image-card.portrait-card img{
+  min-height:240px;
+  object-fit:cover;
+  object-position:center 28%;
+}
+
 .closing-final-line{
   min-height:46px;
   display:flex;
@@ -2389,6 +2395,19 @@ figcaption{
   object-fit:cover;
   object-position:52% center;
   display:block;
+}
+
+.cover-hero-card.portrait-card{
+  background:linear-gradient(135deg,#e7eef9,#f7fbff);
+}
+
+.cover-hero-card.portrait-card img{
+  object-fit:cover;
+  object-position:center 22%;
+}
+
+.cover-hero-card.portrait-card .hero-marker{
+  display:none;
 }
 
 .cover-hero-card figcaption{
