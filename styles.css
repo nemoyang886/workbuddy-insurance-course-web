@@ -21,6 +21,9 @@
   --wb-code-2:#153966;
   --wb-progress:0%;
   --wb-stage-color:var(--wb-blue);
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei UI","Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --display:"PingFang SC","Hiragino Sans GB","Microsoft YaHei UI","Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"SFMono-Regular","Roboto Mono",Menlo,Consolas,monospace;
 }
 
 html{
@@ -35,6 +38,10 @@ body{
     #f6f9ff;
   background-size:56px 56px,56px 56px,auto,auto;
   color:var(--wb-ink);
+  font-family:var(--sans);
+  font-weight:500;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
 }
 
 body::after{
@@ -3292,4 +3299,116 @@ h1{
 .slide[data-page="17"] .compare-enhanced .prompt-box:last-child pre{
   font-size:clamp(15px,.92vw,18px);
   line-height:1.48;
+}
+
+/* Global classroom composition: center slide content in the safe area. */
+.slide{
+  grid-template-rows:auto auto minmax(0,1fr);
+  row-gap:clamp(14px,1.35vh,22px);
+}
+
+.slide-top,
+.eyebrow,
+.time-pill,
+.prompt-label{
+  font-family:var(--sans);
+  letter-spacing:0;
+  text-transform:none;
+}
+
+h1,
+h2,
+h3,
+.card-title,
+.route-step h3,
+.workflow-step h3{
+  font-family:var(--display);
+  letter-spacing:0;
+}
+
+h1{
+  font-weight:800;
+  line-height:1.08;
+  margin:0;
+}
+
+.body{
+  height:100%;
+  display:grid;
+  align-content:center;
+  align-items:center;
+}
+
+.body > *{
+  width:100%;
+  max-height:100%;
+  align-self:center;
+}
+
+.body > .two-col,
+.body > .grid,
+.body > .image-grid,
+.body > .route-map,
+.body > .decision-board,
+.body > .workflow-board,
+.body > .privacy-board,
+.body > .task-builder,
+.body > .prompt-workspace{
+  height:auto;
+  max-height:100%;
+}
+
+.body > .two-col{
+  min-height:min(62vh,100%);
+  align-items:center;
+}
+
+.body > .grid[class*="cols-"],
+.body > .image-grid,
+.workflow-steps,
+.privacy-board{
+  align-items:center;
+}
+
+.card-body,
+figcaption,
+.workflow-output,
+.prompt-box pre{
+  font-weight:500;
+}
+
+/* Center pages whose enhanced footers previously pinned content to the bottom. */
+.slide[data-page="3"] .body,
+.slide[data-page="37"] .body,
+.slide[data-page="40"] .body{
+  grid-template-rows:auto auto;
+  align-content:center;
+  gap:clamp(18px,2.2vh,28px);
+}
+
+.slide[data-page="3"] .outcome-stage,
+.slide[data-page="40"] .action-calendar{
+  height:auto;
+  min-height:0;
+}
+
+.slide[data-page="3"] .outcome-badges{
+  height:auto;
+}
+
+.slide[data-page="3"] .outcome-statement,
+.slide[data-page="37"] .check-inspector,
+.slide[data-page="40"] .action-closing{
+  position:static;
+}
+
+.slide[data-page="24"] .body{
+  grid-template-rows:auto auto;
+  align-content:center;
+  gap:clamp(18px,2.4vh,30px);
+}
+
+.slide[data-page="24"] .two-col{
+  height:auto;
+  align-items:center;
 }
