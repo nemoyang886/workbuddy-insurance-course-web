@@ -2799,7 +2799,7 @@ figcaption{
 /* Overflow audit fixes: keep every slide inside the classroom safe area. */
 .slide{
   display:grid;
-  grid-template-rows:auto auto auto minmax(0,1fr);
+  grid-template-rows:auto auto minmax(0,1fr);
   row-gap:1.05vh;
   padding:4.2vh 5vw 8.4vh;
 }
