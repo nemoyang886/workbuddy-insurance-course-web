@@ -2299,10 +2299,10 @@ figcaption{
   backdrop-filter:blur(10px);
 }
 
-.closing-image-card.portrait-card img{
+.closing-image-card.course-hero-card img{
   min-height:240px;
   object-fit:cover;
-  object-position:center 28%;
+  object-position:center;
 }
 
 .closing-final-line{
@@ -2397,16 +2397,16 @@ figcaption{
   display:block;
 }
 
-.cover-hero-card.portrait-card{
+.cover-hero-card.course-hero-card{
   background:linear-gradient(135deg,#e7eef9,#f7fbff);
 }
 
-.cover-hero-card.portrait-card img{
+.cover-hero-card.course-hero-card img{
   object-fit:cover;
-  object-position:center 22%;
+  object-position:center;
 }
 
-.cover-hero-card.portrait-card .hero-marker{
+.cover-hero-card.course-hero-card .hero-marker{
   display:none;
 }
 

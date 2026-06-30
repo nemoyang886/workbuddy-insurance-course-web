@@ -179,9 +179,9 @@
       <span>带走可复用工作流</span>
     `);
     const visual = el("div","cover-visual ai-hero",`
-      <figure class="cover-hero-card portrait-card">
-        <img src="images/leo-portrait-workbuddy.webp" alt="Leo 杨威课程主讲人形象照" loading="eager" decoding="async" fetchpriority="high">
-        <figcaption>Leo 杨威 · WorkBuddy AI 工作流实操课</figcaption>
+      <figure class="cover-hero-card course-hero-card">
+        <img src="images/workbuddy-course-hero.webp" alt="保险顾问 AI 工作流实操课程主视觉" loading="eager" decoding="async" fetchpriority="high">
+        <figcaption>WorkBuddy AI 工作流 · 资料 / Task / Skill / 客户跟进</figcaption>
         <div class="hero-marker marker-one">任务</div>
         <div class="hero-marker marker-two">知识库</div>
         <div class="hero-marker marker-three">Skill</div>
@@ -847,8 +847,8 @@
           <div><span>Day 5-6</span><b>跑客户跟进场景</b></div>
           <div><span>Day 7</span><b>复盘成 Skill</b></div>
         </div>
-        <figure class="closing-image-card portrait-card">
-          <img src="images/leo-portrait-workbuddy.webp" alt="Leo 杨威课程主讲人形象照" loading="lazy" decoding="async">
+        <figure class="closing-image-card course-hero-card">
+          <img src="images/workbuddy-course-hero.webp" alt="保险顾问 AI 工作流实操课程主视觉" loading="lazy" decoding="async">
           <figcaption>从一次实操，走向长期可复用的展业工作流</figcaption>
         </figure>
         <div class="closing-final-line">每天只推进一个高频场景，让 WorkBuddy 龙虾越来越懂你的业务。</div>
