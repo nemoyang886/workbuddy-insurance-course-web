@@ -3212,6 +3212,10 @@ h1{
 }
 
 /* Final verification overrides */
+.time-pill{
+  display:none !important;
+}
+
 .slide[data-page="17"] .compare-enhanced .prompt-box{
   grid-template-rows:auto auto auto minmax(0,1fr);
 }
