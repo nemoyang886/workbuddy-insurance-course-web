@@ -3156,6 +3156,50 @@ h1{
     height:auto;
     grid-template-rows:none;
   }
+  .slide[data-page="32"] .body{
+    overflow:hidden;
+  }
+  .slide[data-page="32"] .workflow-board.customer-enhanced{
+    height:100%;
+    max-height:100%;
+    grid-template-rows:auto auto auto;
+    align-content:start;
+    overflow:auto;
+    gap:10px;
+    padding-right:3px;
+  }
+  .slide[data-page="32"] .workflow-rail.customer-loop,
+  .slide[data-page="32"] .workflow-steps{
+    grid-template-columns:1fr;
+    gap:10px;
+    min-height:auto;
+  }
+  .slide[data-page="32"] .workflow-board.flow-enhanced .workflow-steps::before{
+    display:none;
+  }
+  .slide[data-page="32"] .workflow-board.flow-enhanced .workflow-step.is-active{
+    transform:none;
+  }
+  .slide[data-page="32"] .customer-loop .workflow-node{
+    min-height:52px;
+    padding:10px 12px;
+  }
+  .slide[data-page="32"] .workflow-step{
+    padding:14px;
+  }
+  .slide[data-page="32"] .workflow-step h3{
+    font-size:24px;
+    margin:6px 0;
+  }
+  .slide[data-page="32"] .workflow-step p,
+  .slide[data-page="32"] .workflow-output,
+  .slide[data-page="32"] .workflow-note{
+    font-size:15px;
+    line-height:1.42;
+  }
+  .slide[data-page="32"] .workflow-note{
+    padding:12px;
+  }
   .slide[data-page="35"] .prompt-workspace,
   .slide[data-page="36"] .prompt-workspace{
     display:flex;

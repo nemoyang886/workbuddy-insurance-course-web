@@ -9,7 +9,7 @@
     {end:23, label:"项目与知识库", color:"#0b8f7a"},
     {end:27, label:"朋友圈工作流", color:"#f59e0b"},
     {end:31, label:"Skill 封装", color:"#7c3aed"},
-    {end:39, label:"客户跟进工作流", color:"#1aa6d9"},
+    {end:39, label:"定联系统", color:"#1aa6d9"},
     {end:42, label:"课后行动", color:"#1f5eff"}
   ];
 
@@ -22,7 +22,7 @@
     21:"资料准备", 22:"风格说明书", 23:"排障休息", 24:"场景一",
     25:"内容角度", 26:"三轮优化", 27:"样本入库", 28:"Skill 判断",
     29:"创建 Skill", 30:"测试 V1", 31:"Skill 管理", 32:"场景二",
-    33:"隐私规则", 34:"客户快照", 35:"事实分析", 36:"话术计划",
+    33:"隐私规则", 34:"定联快照", 35:"定联分析", 36:"定联计划",
     37:"验收标准", 38:"现场验收", 39:"知识资产", 40:"7天行动",
     41:"进阶地图", 42:"收束页"
   };
@@ -39,9 +39,9 @@
     26:["生成并优化朋友圈初稿","替换选择的角度和字数要求","一条可继续保存的朋友圈文案"],
     29:["创建朋友圈 Skill V1","替换 Skill 名称和触发方式","一个朋友圈 Skill 初版"],
     30:["补全 Skill 执行流程","替换测试主题和新增规则","Skill V1 测试结果和 V2 更新方向"],
-    34:["统一匿名客户案例","替换为自己的匿名客户资料","一张客户快照"],
-    35:["整理事实和沟通分析","粘贴匿名客户资料和沟通记录","一份事实整理和沟通分析"],
-    36:["生成话术和行动计划","替换联系目标和跟进周期","三套话术和7天行动计划"],
+    34:["统一匿名定联案例","替换为自己的匿名客户资料","一张定联客户快照"],
+    35:["整理事实和定联分析","粘贴匿名客户资料和沟通记录","一份定联分级和沟通分析"],
+    36:["生成定联话术和行动计划","替换联系目标和联系周期","三套定联话术和7天定联计划"],
     39:["把沟通沉淀成资产","替换当天客户沟通内容","一份可入库的沟通复盘"]
   };
 
@@ -60,10 +60,10 @@
     27:"本页产出：朋友圈样板入库",
     29:"本页产出：朋友圈 Skill V1",
     30:"本页产出：Skill 测试和 V2 更新方向",
-    34:"本页产出：匿名客户快照",
-    35:"本页产出：事实整理和沟通分析",
-    36:"本页产出：跟进话术和行动计划",
-    37:"本页产出：客户跟进方案验收标准",
+    34:"本页产出：匿名定联客户快照",
+    35:"本页产出：定联分级和沟通分析",
+    36:"本页产出：定联话术和7天行动计划",
+    37:"本页产出：定联方案验收标准",
     40:"本页产出：7天课后行动清单",
     42:"本页产出：下一步迭代方向"
   };
@@ -71,7 +71,7 @@
   const routeTakeaways = [
     ["真实问题", "卡点清单", "一句业务需求"],
     ["任务入口", "项目/知识库", "Ask Plan Craft"],
-    ["朋友圈文案", "跟进方案", "课堂产物"],
+    ["朋友圈文案", "定联方案", "课堂产物"],
     ["满意样本", "Skill V1", "7天行动"]
   ];
 
@@ -182,7 +182,7 @@
     const visual = el("div","cover-visual ai-hero",`
       <figure class="cover-hero-card course-hero-card">
         <img src="images/workbuddy-course-hero.webp" alt="保险顾问 AI 工作流实操课程主视觉" loading="eager" decoding="async" fetchpriority="high">
-        <figcaption>WorkBuddy AI 工作流 · 资料 / Task / Skill / 客户跟进</figcaption>
+        <figcaption>WorkBuddy AI 工作流 · 资料 / Task / Skill / 定联系统</figcaption>
         <div class="hero-marker marker-one">任务</div>
         <div class="hero-marker marker-two">知识库</div>
         <div class="hero-marker marker-three">Skill</div>
@@ -201,14 +201,14 @@
   function promptStepsFor(page, meta){
     if(page === 35){
       return [
-        ["事实整理", "把客户资料分成已知事实、明确表达和信息缺口"],
+        ["定联分级", "把客户资料分成关系温度、联系周期和本次目标"],
         ["沟通分析", "只基于资料判断顾虑、关注点和待验证问题"],
         ["复制执行", "只替换匿名客户资料和沟通记录"]
       ];
     }
     if(page === 36){
       return [
-        ["跟进话术", "生成温和复联、需求探询和邀约沟通"],
+        ["定联话术", "生成轻触达、价值型和探询型表达"],
         ["7天计划", "明确联系时间、目标和分支动作"],
         ["结果检查", "验收事实边界、语气和可回复性"]
       ];
@@ -647,18 +647,18 @@
     if(!board || board.querySelector(".customer-loop")) return;
     board.classList.add("customer-enhanced");
     const rail = makeWorkflowRail([
-      ["客户资料","匿名输入"],
-      ["事实整理","分清已知与假设"],
+      ["客户池","匿名输入"],
+      ["定联分级","关系温度"],
       ["沟通分析","看见顾虑"],
-      ["跟进话术","微信可直接改"],
-      ["行动计划","7天推进"],
+      ["定联话术","微信可直接改"],
+      ["7天计划","持续联系"],
       ["复盘沉淀","进入知识库"]
     ],0,"customer-loop");
     board.insertBefore(rail, board.firstChild);
     const steps = Array.from(board.querySelectorAll(".workflow-step"));
     steps.forEach((step, index) => makeButtonLike(step, () => {
       steps.forEach((item, i) => item.classList.toggle("is-active", i === index));
-    }, "查看客户跟进动作"));
+    }, "查看定联动作"));
     steps[0]?.classList.add("is-active");
   }
 
@@ -690,9 +690,9 @@
       ["年龄段","38岁"],
       ["家庭阶段","已婚，有一个孩子"],
       ["职业","自由职业"],
-      ["沟通状态","两个月没有继续联系"],
+      ["沟通状态","两个月没有定联"],
       ["客户反馈","觉得长期规划收益不明显"],
-      ["当前卡点","暂时不着急，缺少再次沟通切入点"]
+      ["当前卡点","暂时不着急，缺少自然定联切入点"]
     ].map(([k,v]) => `<div><b>${k}</b><span>${v}</span></div>`).join(""));
     root.insertBefore(snapshot, root.firstChild);
   }
@@ -701,7 +701,7 @@
     [35,36].forEach((page) => {
       const root = contentRoot(slides[page - 1]);
       if(!root || root.querySelector(".task-structure")) return;
-      const structure = el("div","task-structure",["事实整理","沟通分析","跟进话术","行动计划","自检"].map((item) => `<span>${item}</span>`).join(""));
+      const structure = el("div","task-structure",["事实整理","定联分级","沟通分析","定联话术","7天计划","自检"].map((item) => `<span>${item}</span>`).join(""));
       root.insertBefore(structure, root.firstChild);
     });
   }
@@ -714,9 +714,9 @@
     const checks = [
       ["事实和推测分开","没有依据就标注为待验证假设。"],
       ["话术像真人微信","读起来像你发给客户的话，不像模板。"],
-      ["没有明显推销感","先理解顾虑，再寻找自然切入点。"],
+      ["没有明显推销感","先经营关系，再寻找自然切入点。"],
       ["客户容易回复","问题具体、温和，对方知道怎么接。"],
-      ["下一步动作清晰","建议时间、目标、分支动作明确。"],
+      ["定联节奏清晰","联系周期、联系理由、下一步动作明确。"],
       ["尊重客户关系","不压迫、不替客户做决定，不透支信任。"]
     ];
     const cards = Array.from(grid.querySelectorAll(".card"));
@@ -747,7 +747,7 @@
       ["10分钟","上传5条你满意的朋友圈样本。"],
       ["15分钟","用朋友圈 Skill 生成一条新内容。"],
       ["10分钟","把不满意的地方写进 V2 规则。"],
-      ["15分钟","用匿名客户案例跑一遍跟进提示词。"],
+      ["15分钟","用匿名客户案例跑一遍定联提示词。"],
       ["10分钟","列出三个每周重复出现的业务动作。"],
       ["15分钟","选一个动作，写出下一个 Skill 的目标。"]
     ];
@@ -824,7 +824,7 @@
     const actions = el("div","closing-actions",[
       ["继续补资料","个人介绍、客户画像、朋友圈样本"],
       ["继续做 Skill","把高频任务沉淀成固定方法"],
-      ["继续跑业务场景","朋友圈、跟进、复访、复盘"],
+      ["继续跑业务场景","朋友圈、定联、复访、复盘"],
       ["继续复盘优化","用反馈更新你的 AI 工作流"]
     ].map(([titleText, desc]) => `<span><b>${titleText}</b><em>${desc}</em></span>`).join(""));
     const visual = el("div","closing-office closing-finale",`
@@ -845,7 +845,7 @@
         <div class="closing-sprint">
           <div><span>Day 1-2</span><b>整理资料库</b></div>
           <div><span>Day 3-4</span><b>跑朋友圈场景</b></div>
-          <div><span>Day 5-6</span><b>跑客户跟进场景</b></div>
+          <div><span>Day 5-6</span><b>跑定联系统场景</b></div>
           <div><span>Day 7</span><b>复盘成 Skill</b></div>
         </div>
         <figure class="closing-image-card course-hero-card">
