@@ -3412,3 +3412,164 @@ figcaption,
   height:auto;
   align-items:center;
 }
+
+/* Image 2 generated cover: full-bleed visual with accurate HTML text overlay. */
+.cover-poster-slide{
+  padding:0;
+  background:#071c4a;
+  color:#fff;
+}
+
+.cover-poster-slide::after{
+  inset:0;
+  border:0;
+  border-radius:0;
+  background:none;
+  box-shadow:none;
+}
+
+.cover-poster-slide .slide-top,
+.cover-poster-slide .time-pill{
+  display:none !important;
+}
+
+.cover-poster-slide .body.cover-poster{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  padding:0;
+}
+
+.cover-poster-bg,
+.cover-poster-vignette{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+.cover-poster-bg{
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+
+.cover-poster-vignette{
+  z-index:1;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at center,rgba(255,255,255,.56) 0%,rgba(255,255,255,.28) 31%,rgba(30,94,255,.10) 55%,rgba(4,20,70,.34) 100%),
+    linear-gradient(180deg,rgba(6,18,55,.12),rgba(6,18,55,.24));
+}
+
+.cover-copy{
+  position:relative;
+  z-index:2;
+  width:min(1020px,78vw);
+  display:grid;
+  justify-items:center;
+  text-align:center;
+  padding:clamp(22px,3.2vw,52px);
+}
+
+.cover-kicker{
+  justify-self:start;
+  margin:0 0 clamp(12px,1.35vw,20px) clamp(8px,1.2vw,18px);
+  min-height:clamp(34px,3vw,48px);
+  display:inline-flex;
+  align-items:center;
+  padding:0 clamp(16px,1.45vw,26px);
+  border:1px solid rgba(255,255,255,.52);
+  border-radius:999px;
+  background:linear-gradient(135deg,rgba(31,94,255,.92),rgba(245,158,11,.88));
+  color:#fff;
+  font-size:clamp(15px,1.1vw,21px);
+  line-height:1;
+  font-weight:950;
+  letter-spacing:.02em;
+  box-shadow:0 16px 42px rgba(13,64,180,.24);
+}
+
+.cover-copy h1{
+  max-width:none;
+  margin:0;
+  color:#082052;
+  font-size:clamp(50px,5vw,98px);
+  line-height:1.02;
+  font-weight:950;
+  letter-spacing:0;
+  text-shadow:
+    0 2px 0 rgba(255,255,255,.76),
+    0 18px 48px rgba(16,54,132,.22);
+}
+
+.cover-copy h1 span{
+  display:block;
+}
+
+.cover-title-nowrap{
+  white-space:nowrap;
+}
+
+.cover-copy p{
+  width:min(820px,100%);
+  margin:clamp(18px,1.8vw,30px) 0 0;
+  color:#163c78;
+  font-size:clamp(18px,1.28vw,25px);
+  line-height:1.5;
+  font-weight:850;
+  text-shadow:0 1px 0 rgba(255,255,255,.68),0 12px 34px rgba(15,47,130,.18);
+}
+
+@media (max-width:980px){
+  .cover-copy{
+    width:min(760px,86vw);
+  }
+
+  .cover-copy h1{
+    font-size:clamp(36px,7.4vw,68px);
+  }
+
+  .cover-copy p{
+    font-size:clamp(18px,3vw,24px);
+  }
+}
+
+@media (max-width:760px){
+  .cover-poster-slide{
+    padding:0;
+  }
+
+  .cover-poster-slide .body.cover-poster{
+    height:100%;
+    overflow:hidden;
+  }
+
+  .cover-poster-bg{
+    object-position:center;
+  }
+
+  .cover-copy{
+    width:min(340px,86vw);
+    padding:0;
+  }
+
+  .cover-kicker{
+    justify-self:center;
+    margin:0 0 14px;
+  }
+
+  .cover-copy h1{
+    font-size:clamp(30px,8.4vw,40px);
+    line-height:1.08;
+  }
+
+  .cover-copy p{
+    font-size:clamp(15px,4.3vw,18px);
+    line-height:1.52;
+  }
+}

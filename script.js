@@ -170,6 +170,7 @@
   function enhanceCover(){
     const slide = slides[0];
     const body = slide?.querySelector(".body");
+    if(slide?.classList.contains("cover-poster-slide") || body?.classList.contains("cover-poster")) return;
     if(!body || body.querySelector(".cover-visual")) return;
     const left = el("div","cover-left");
     Array.from(body.children).forEach((child) => left.appendChild(child));
