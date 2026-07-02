@@ -3,7 +3,7 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const total = slides.length;
   const stageList = [
-    {end:5, label:"开场定位", color:"#1f5eff"},
+    {end:4, label:"开场定位", color:"#1f5eff"},
     {end:14, label:"WorkBuddy 操作", color:"#1f5eff"},
     {end:17, label:"任务指令", color:"#0b8f7a"},
     {end:23, label:"项目与知识库", color:"#0b8f7a"},
@@ -15,7 +15,7 @@
 
   const pageLabelMap = {
     1:"3小时实操", 2:"学习路线", 3:"课堂产物", 4:"真实卡点",
-    5:"真实需求", 6:"安装演示", 7:"安装检查", 8:"界面认知",
+    5:"安装演示", 6:"安装检查", 7:"界面认知", 8:"基础设置",
     9:"工作目录", 10:"办公室模型", 11:"创建任务", 12:"三种模式",
     13:"任务管理", 14:"持续修改", 15:"任务卡", 16:"通用模板",
     17:"任务升级", 18:"项目资产", 19:"项目指令", 20:"交付流程",
@@ -23,12 +23,12 @@
     25:"内容角度", 26:"三轮优化", 27:"样本入库", 28:"场景二",
     29:"隐私规则", 30:"定联快照", 31:"定联分析", 32:"定联计划",
     33:"验收标准", 34:"Skill 判断", 35:"创建 Skill", 36:"测试 V1",
-    37:"Skill 管理", 38:"现场验收", 39:"知识资产", 40:"7天行动",
+    37:"Skill 管理", 38:"现场验收", 39:"知识资产", 40:"3天跟进",
     41:"进阶地图", 42:"收束页"
   };
 
   const promptMeta = {
-    5:["写下真实需求","替换为自己的工作问题","一个真实业务问题"],
+    8:["让 AI 认识你","替换个人画像和工作问题","基础画像和清晰任务"],
     9:["建立课堂工作目录","按自己电脑路径创建文件夹","一套可持续保存资料的目录"],
     16:["把模糊需求写成工单","替换任务目标、资料、对象和边界","一张完整任务卡"],
     17:["对比错误任务和优化任务","把主题、客户、资料、输出写清楚","一条可执行朋友圈任务"],
@@ -46,8 +46,9 @@
   };
 
   const outputLabelMap = {
-    6:"本页产出：完成安装入口确认",
-    8:"本页产出：认识首页三块区域",
+    5:"本页产出：完成安装入口确认",
+    7:"本页产出：认识首页三块区域",
+    8:"本页产出：基础画像和一个真实工作问题",
     9:"本页产出：建好课堂工作目录",
     11:"本页产出：会写任务说明书",
     12:"本页产出：知道 Ask、Plan、Craft 什么时候用",
@@ -64,20 +65,20 @@
     33:"本页产出：定联方案验收标准",
     35:"本页产出：朋友圈 Skill V1",
     36:"本页产出：Skill 测试和 V2 更新方向",
-    40:"本页产出：7天课后行动清单",
+    40:"本页产出：3天课后跟进清单",
     42:"本页产出：下一步迭代方向"
   };
 
   const routeTakeaways = [
-    ["真实问题", "卡点清单", "一句业务需求"],
+    ["个人画像", "真实问题", "一句业务需求"],
     ["任务入口", "项目/知识库", "Ask Plan Craft"],
     ["朋友圈文案", "定联方案", "课堂产物"],
-    ["满意样本", "Skill V1", "7天行动"]
+    ["满意样本", "Skill V1", "3天跟进"]
   ];
 
   const shotMarkerMap = {
-    6:["选择版本", "下载安装"],
-    8:["左侧导航", "输入任务"],
+    5:["选择版本", "下载安装"],
+    7:["左侧导航", "输入任务"],
     11:["写清任务", "看任务结果"],
     13:["任务记录", "产物文件"],
     35:["点添加技能", "选择创建技能"],
@@ -743,13 +744,9 @@
     const grid = body?.querySelector(".grid.cols-4");
     if(!body || !grid || body.querySelector(".action-calendar")) return;
     const details = [
-      ["15分钟","个人定位资料完整，有一句清楚的自我介绍。"],
-      ["10分钟","上传5条你满意的朋友圈样本。"],
-      ["15分钟","用朋友圈 Skill 生成一条新内容。"],
-      ["10分钟","把不满意的地方写进 V2 规则。"],
-      ["15分钟","用匿名客户案例跑一遍定联提示词。"],
-      ["10分钟","列出三个每周重复出现的业务动作。"],
-      ["15分钟","选一个动作，写出下一个 Skill 的目标。"]
+      ["20分钟","用朋友圈 Skill 跑出第一条可修改样本。"],
+      ["20分钟","把修改后的满意样本保存进知识库。"],
+      ["30分钟","用匿名客户资料完整跑通一次定联案例。"]
     ];
     const calendar = el("div","action-calendar");
     const panel = el("aside","day-detail");
@@ -785,7 +782,7 @@
       `;
     }
     setActive(0);
-    body.appendChild(el("div","action-closing","每天只做一个小动作，让 WorkBuddy 龙虾慢慢变成你的专属展业助手。"));
+    body.appendChild(el("div","action-closing","3 天只盯两个成果：一条满意朋友圈样本，一个跑通的客户定联案例。"));
   }
 
   function enhanceLadder(){
@@ -831,7 +828,7 @@
       <div class="closing-finale-card">
         <div class="closing-finale-head">
           <span>课后行动</span>
-          <strong>7 天把第一版跑顺</strong>
+          <strong>3 天把第一版跑顺</strong>
         </div>
         <div class="closing-loop">
           <div><b>资料</b><span>先补齐</span></div>
@@ -843,10 +840,9 @@
           <div><b>复盘</b><span>持续改</span></div>
         </div>
         <div class="closing-sprint">
-          <div><span>Day 1-2</span><b>整理资料库</b></div>
-          <div><span>Day 3-4</span><b>跑朋友圈场景</b></div>
-          <div><span>Day 5-6</span><b>跑定联系统场景</b></div>
-          <div><span>Day 7</span><b>复盘成 Skill</b></div>
+          <div><span>Day 1</span><b>用 Skill 跑朋友圈样本</b></div>
+          <div><span>Day 2</span><b>修改并保存满意样本</b></div>
+          <div><span>Day 3</span><b>跑通客户定联案例</b></div>
         </div>
         <figure class="closing-image-card course-hero-card">
           <img src="images/workbuddy-course-hero.webp" alt="保险顾问 AI 工作流实操课程主视觉" loading="lazy" decoding="async">
