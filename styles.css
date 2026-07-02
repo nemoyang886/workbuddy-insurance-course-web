@@ -2941,22 +2941,22 @@ h1{
   padding:.75vh 1vw;
 }
 
-.slide[data-page="29"] .prompt-workspace > .two-col{
+.slide[data-page="35"] .prompt-workspace > .two-col{
   grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
 }
 
-.slide[data-page="29"] .prompt-workspace > .two-col > div:last-child{
+.slide[data-page="35"] .prompt-workspace > .two-col > div:last-child{
   display:grid;
   grid-template-rows:minmax(0,1fr) auto;
   gap:1vh;
   min-height:0;
 }
 
-.slide[data-page="29"] .shot.big .shot-frame{
+.slide[data-page="35"] .shot.big .shot-frame{
   height:100%;
 }
 
-.slide[data-page="29"] .card{
+.slide[data-page="35"] .card{
   padding:1.2vh 1vw;
 }
 
@@ -2984,25 +2984,25 @@ h1{
   padding:1.65vh 1.2vw 1.65vh 1.45vw;
 }
 
-.slide[data-page="35"] .prompt-workspace,
-.slide[data-page="36"] .prompt-workspace{
+.slide[data-page="31"] .prompt-workspace,
+.slide[data-page="32"] .prompt-workspace{
   display:grid;
   grid-template-rows:auto minmax(0,1fr);
 }
 
-.slide[data-page="35"] .prompt-box,
-.slide[data-page="36"] .prompt-box{
+.slide[data-page="31"] .prompt-box,
+.slide[data-page="32"] .prompt-box{
   height:100%;
   max-height:none;
 }
 
-.slide[data-page="35"] .task-structure,
-.slide[data-page="36"] .task-structure{
+.slide[data-page="31"] .task-structure,
+.slide[data-page="32"] .task-structure{
   margin-bottom:0;
 }
 
-.slide[data-page="35"] .task-structure span,
-.slide[data-page="36"] .task-structure span{
+.slide[data-page="31"] .task-structure span,
+.slide[data-page="32"] .task-structure span{
   min-height:42px;
   font-size:clamp(14px,.9vw,18px);
 }
@@ -3095,7 +3095,7 @@ h1{
   .two-col,
   .slide.template-prompt .body,
   .task-builder,
-  .slide[data-page="29"] .prompt-workspace > .two-col,
+  .slide[data-page="35"] .prompt-workspace > .two-col,
   .slide[data-page="41"] .two-col{
     grid-template-columns:1fr;
   }
@@ -3132,7 +3132,7 @@ h1{
     grid-template-columns:1fr;
   }
   .shot.big .shot-frame,
-  .slide[data-page="29"] .shot.big .shot-frame,
+  .slide[data-page="35"] .shot.big .shot-frame,
   .slide[data-page="41"] .shot.big .shot-frame{
     height:min(42vh,360px);
   }
@@ -3156,10 +3156,10 @@ h1{
     height:auto;
     grid-template-rows:none;
   }
-  .slide[data-page="32"] .body{
+  .slide[data-page="28"] .body{
     overflow:hidden;
   }
-  .slide[data-page="32"] .workflow-board.customer-enhanced{
+  .slide[data-page="28"] .workflow-board.customer-enhanced{
     height:100%;
     max-height:100%;
     grid-template-rows:auto auto auto;
@@ -3168,40 +3168,40 @@ h1{
     gap:10px;
     padding-right:3px;
   }
-  .slide[data-page="32"] .workflow-rail.customer-loop,
-  .slide[data-page="32"] .workflow-steps{
+  .slide[data-page="28"] .workflow-rail.customer-loop,
+  .slide[data-page="28"] .workflow-steps{
     grid-template-columns:1fr;
     gap:10px;
     min-height:auto;
   }
-  .slide[data-page="32"] .workflow-board.flow-enhanced .workflow-steps::before{
+  .slide[data-page="28"] .workflow-board.flow-enhanced .workflow-steps::before{
     display:none;
   }
-  .slide[data-page="32"] .workflow-board.flow-enhanced .workflow-step.is-active{
+  .slide[data-page="28"] .workflow-board.flow-enhanced .workflow-step.is-active{
     transform:none;
   }
-  .slide[data-page="32"] .customer-loop .workflow-node{
+  .slide[data-page="28"] .customer-loop .workflow-node{
     min-height:52px;
     padding:10px 12px;
   }
-  .slide[data-page="32"] .workflow-step{
+  .slide[data-page="28"] .workflow-step{
     padding:14px;
   }
-  .slide[data-page="32"] .workflow-step h3{
+  .slide[data-page="28"] .workflow-step h3{
     font-size:24px;
     margin:6px 0;
   }
-  .slide[data-page="32"] .workflow-step p,
-  .slide[data-page="32"] .workflow-output,
-  .slide[data-page="32"] .workflow-note{
+  .slide[data-page="28"] .workflow-step p,
+  .slide[data-page="28"] .workflow-output,
+  .slide[data-page="28"] .workflow-note{
     font-size:15px;
     line-height:1.42;
   }
-  .slide[data-page="32"] .workflow-note{
+  .slide[data-page="28"] .workflow-note{
     padding:12px;
   }
-  .slide[data-page="35"] .prompt-workspace,
-  .slide[data-page="36"] .prompt-workspace{
+  .slide[data-page="31"] .prompt-workspace,
+  .slide[data-page="32"] .prompt-workspace{
     display:flex;
   }
   .slide[data-page="41"] .two-col{
@@ -3423,7 +3423,7 @@ figcaption,
 
 /* Center pages whose enhanced footers previously pinned content to the bottom. */
 .slide[data-page="3"] .body,
-.slide[data-page="37"] .body,
+.slide[data-page="33"] .body,
 .slide[data-page="40"] .body{
   grid-template-rows:auto auto;
   align-content:center;
@@ -3441,7 +3441,7 @@ figcaption,
 }
 
 .slide[data-page="3"] .outcome-statement,
-.slide[data-page="37"] .check-inspector,
+.slide[data-page="33"] .check-inspector,
 .slide[data-page="40"] .action-closing{
   position:static;
 }

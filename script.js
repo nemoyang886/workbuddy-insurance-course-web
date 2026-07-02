@@ -3,33 +3,33 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const total = slides.length;
   const stageList = [
-    {end:4, label:"开场定位", color:"#1f5eff"},
-    {end:13, label:"WorkBuddy 操作", color:"#1f5eff"},
+    {end:5, label:"开场定位", color:"#1f5eff"},
+    {end:14, label:"WorkBuddy 操作", color:"#1f5eff"},
     {end:17, label:"任务指令", color:"#0b8f7a"},
     {end:23, label:"项目与知识库", color:"#0b8f7a"},
     {end:27, label:"朋友圈工作流", color:"#f59e0b"},
-    {end:31, label:"Skill 封装", color:"#7c3aed"},
-    {end:39, label:"定联系统", color:"#1aa6d9"},
+    {end:33, label:"定联系统", color:"#1aa6d9"},
+    {end:37, label:"Skill 封装", color:"#7c3aed"},
     {end:42, label:"课后行动", color:"#1f5eff"}
   ];
 
   const pageLabelMap = {
     1:"3小时实操", 2:"学习路线", 3:"课堂产物", 4:"真实卡点",
-    5:"安装演示", 6:"安装检查", 7:"界面认知", 8:"真实需求",
-    9:"办公室模型", 10:"创建任务", 11:"三种模式", 12:"任务管理",
-    13:"持续修改", 14:"工作目录", 15:"任务卡", 16:"通用模板",
+    5:"真实需求", 6:"安装演示", 7:"安装检查", 8:"界面认知",
+    9:"工作目录", 10:"办公室模型", 11:"创建任务", 12:"三种模式",
+    13:"任务管理", 14:"持续修改", 15:"任务卡", 16:"通用模板",
     17:"任务升级", 18:"项目资产", 19:"项目指令", 20:"交付流程",
     21:"资料准备", 22:"风格说明书", 23:"排障休息", 24:"场景一",
-    25:"内容角度", 26:"三轮优化", 27:"样本入库", 28:"Skill 判断",
-    29:"创建 Skill", 30:"测试 V1", 31:"Skill 管理", 32:"场景二",
-    33:"隐私规则", 34:"定联快照", 35:"定联分析", 36:"定联计划",
-    37:"验收标准", 38:"现场验收", 39:"知识资产", 40:"7天行动",
+    25:"内容角度", 26:"三轮优化", 27:"样本入库", 28:"场景二",
+    29:"隐私规则", 30:"定联快照", 31:"定联分析", 32:"定联计划",
+    33:"验收标准", 34:"Skill 判断", 35:"创建 Skill", 36:"测试 V1",
+    37:"Skill 管理", 38:"现场验收", 39:"知识资产", 40:"7天行动",
     41:"进阶地图", 42:"收束页"
   };
 
   const promptMeta = {
-    8:["写下真实需求","替换为自己的工作问题","一个真实业务问题"],
-    14:["建立课堂工作目录","按自己电脑路径创建文件夹","一套可持续保存资料的目录"],
+    5:["写下真实需求","替换为自己的工作问题","一个真实业务问题"],
+    9:["建立课堂工作目录","按自己电脑路径创建文件夹","一套可持续保存资料的目录"],
     16:["把模糊需求写成工单","替换任务目标、资料、对象和边界","一张完整任务卡"],
     17:["对比错误任务和优化任务","把主题、客户、资料、输出写清楚","一条可执行朋友圈任务"],
     19:["写入项目角色和资料规则","替换成自己的展业定位和资料规则","项目指令上半部分"],
@@ -37,20 +37,20 @@
     22:["生成个人表达风格说明书","上传个人介绍和朋友圈样本","一份个人表达风格说明书"],
     25:["生成朋友圈内容角度","替换主题、客户和表达目标","3个可选择内容角度"],
     26:["生成并优化朋友圈初稿","替换选择的角度和字数要求","一条可继续保存的朋友圈文案"],
-    29:["创建朋友圈 Skill V1","替换 Skill 名称和触发方式","一个朋友圈 Skill 初版"],
-    30:["补全 Skill 执行流程","替换测试主题和新增规则","Skill V1 测试结果和 V2 更新方向"],
-    34:["统一匿名定联案例","替换为自己的匿名客户资料","一张定联客户快照"],
-    35:["整理事实和定联分析","粘贴匿名客户资料和沟通记录","一份定联分级和沟通分析"],
-    36:["生成定联话术和行动计划","替换联系目标和联系周期","三套定联话术和7天定联计划"],
+    30:["统一匿名定联案例","替换为自己的匿名客户资料","一张定联客户快照"],
+    31:["整理事实和定联分析","粘贴匿名客户资料和沟通记录","一份定联分级和沟通分析"],
+    32:["生成定联话术和行动计划","替换联系目标和联系周期","三套定联话术和7天定联计划"],
+    35:["创建朋友圈 Skill V1","替换 Skill 名称和触发方式","一个朋友圈 Skill 初版"],
+    36:["补全 Skill 执行流程","替换测试主题和新增规则","Skill V1 测试结果和 V2 更新方向"],
     39:["把沟通沉淀成资产","替换当天客户沟通内容","一份可入库的沟通复盘"]
   };
 
   const outputLabelMap = {
-    5:"本页产出：完成安装入口确认",
-    7:"本页产出：认识首页三块区域",
-    10:"本页产出：会写任务说明书",
-    11:"本页产出：知道 Ask、Plan、Craft 什么时候用",
-    14:"本页产出：建好课堂工作目录",
+    6:"本页产出：完成安装入口确认",
+    8:"本页产出：认识首页三块区域",
+    9:"本页产出：建好课堂工作目录",
+    11:"本页产出：会写任务说明书",
+    12:"本页产出：知道 Ask、Plan、Craft 什么时候用",
     15:"本页产出：一张六格任务卡",
     16:"本页产出：一段通用任务模板",
     18:"本页产出：理解项目和知识库的分工",
@@ -58,12 +58,12 @@
     25:"本页产出：3个朋友圈内容角度",
     26:"本页产出：一条朋友圈初稿和三轮优化方式",
     27:"本页产出：朋友圈样板入库",
-    29:"本页产出：朋友圈 Skill V1",
-    30:"本页产出：Skill 测试和 V2 更新方向",
-    34:"本页产出：匿名定联客户快照",
-    35:"本页产出：定联分级和沟通分析",
-    36:"本页产出：定联话术和7天行动计划",
-    37:"本页产出：定联方案验收标准",
+    30:"本页产出：匿名定联客户快照",
+    31:"本页产出：定联分级和沟通分析",
+    32:"本页产出：定联话术和7天行动计划",
+    33:"本页产出：定联方案验收标准",
+    35:"本页产出：朋友圈 Skill V1",
+    36:"本页产出：Skill 测试和 V2 更新方向",
     40:"本页产出：7天课后行动清单",
     42:"本页产出：下一步迭代方向"
   };
@@ -76,12 +76,12 @@
   ];
 
   const shotMarkerMap = {
-    5:["选择版本", "下载安装"],
-    7:["左侧导航", "输入任务"],
-    10:["写清任务", "看任务结果"],
-    12:["任务记录", "产物文件"],
-    29:["点添加技能", "选择创建技能"],
-    31:["更多菜单", "管理技能"],
+    6:["选择版本", "下载安装"],
+    8:["左侧导航", "输入任务"],
+    11:["写清任务", "看任务结果"],
+    13:["任务记录", "产物文件"],
+    35:["点添加技能", "选择创建技能"],
+    37:["更多菜单", "管理技能"],
     41:["点添加", "设置自动化"]
   };
 
@@ -157,7 +157,7 @@
       slide.style.setProperty("--wb-stage-color", stageFor(page).color);
       if(slide.classList.contains("cover") || slide.classList.contains("closing")){
         slide.classList.add("template-cover");
-      }else if(hasPrompt && page !== 11){
+      }else if(hasPrompt && page !== 12){
         slide.classList.add("template-prompt");
       }else if(hasImage || /安装|任务区|对话|知识库|Skill 页面|创建任务/.test(title)){
         slide.classList.add("template-practice");
@@ -199,14 +199,14 @@
   }
 
   function promptStepsFor(page, meta){
-    if(page === 35){
+    if(page === 31){
       return [
         ["定联分级", "把客户资料分成关系温度、联系周期和本次目标"],
         ["沟通分析", "只基于资料判断顾虑、关注点和待验证问题"],
         ["复制执行", "只替换匿名客户资料和沟通记录"]
       ];
     }
-    if(page === 36){
+    if(page === 32){
       return [
         ["定联话术", "生成轻触达、价值型和探询型表达"],
         ["7天计划", "明确联系时间、目标和分支动作"],
@@ -417,7 +417,7 @@
   }
 
   function enhanceOfficeMap(){
-    const slide = slides[8];
+    const slide = slides[9];
     const body = slide?.querySelector(".body");
     const grid = body?.querySelector(".grid.cols-3");
     if(!body || !grid || body.querySelector(".office-map")) return;
@@ -437,7 +437,7 @@
   }
 
   function enhanceAskPlanCraft(){
-    const slide = slides[10];
+    const slide = slides[11];
     const body = slide?.querySelector(".body");
     const imageGrid = slide?.querySelector(".image-grid");
     const promptGrid = slide?.querySelector(".three-prompts");
@@ -624,7 +624,7 @@
   }
 
   function enhanceTaskSkill(){
-    const board = slides[27]?.querySelector(".decision-board");
+    const board = slides[33]?.querySelector(".decision-board");
     if(!board || board.classList.contains("skill-converter-board")) return;
     board.classList.add("skill-converter-board");
     const arrow = board.querySelector(".decision-arrow");
@@ -642,7 +642,7 @@
   }
 
   function enhanceCustomerLoop(){
-    const slide = slides[31];
+    const slide = slides[27];
     const board = slide?.querySelector(".workflow-board");
     if(!board || board.querySelector(".customer-loop")) return;
     board.classList.add("customer-enhanced");
@@ -663,7 +663,7 @@
   }
 
   function enhancePrivacyRules(){
-    const slide = slides[32];
+    const slide = slides[28];
     const board = slide?.querySelector(".privacy-board");
     if(!board || board.classList.contains("privacy-enhanced")) return;
     board.classList.add("privacy-enhanced");
@@ -684,7 +684,7 @@
   }
 
   function enhanceCustomerSnapshot(){
-    const root = contentRoot(slides[33]);
+    const root = contentRoot(slides[29]);
     if(!root || root.querySelector(".customer-snapshot")) return;
     const snapshot = el("div","customer-snapshot",[
       ["年龄段","38岁"],
@@ -698,7 +698,7 @@
   }
 
   function enhanceCustomerPromptStructure(){
-    [35,36].forEach((page) => {
+    [31,32].forEach((page) => {
       const root = contentRoot(slides[page - 1]);
       if(!root || root.querySelector(".task-structure")) return;
       const structure = el("div","task-structure",["事实整理","定联分级","沟通分析","定联话术","7天计划","自检"].map((item) => `<span>${item}</span>`).join(""));
@@ -707,7 +707,7 @@
   }
 
   function enhanceCustomerChecks(){
-    const slide = slides[36];
+    const slide = slides[32];
     const body = slide?.querySelector(".body");
     const grid = body?.querySelector(".grid.cols-3");
     if(!body || !grid || body.querySelector(".check-inspector")) return;
