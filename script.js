@@ -3,70 +3,105 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const total = slides.length;
   const stageList = [
-    {end:4, label:"开场定位", color:"#1f5eff"},
-    {end:14, label:"WorkBuddy 操作", color:"#1f5eff"},
-    {end:17, label:"任务指令", color:"#0b8f7a"},
-    {end:23, label:"项目与知识库", color:"#0b8f7a"},
-    {end:27, label:"朋友圈工作流", color:"#f59e0b"},
-    {end:33, label:"定联系统", color:"#1aa6d9"},
-    {end:37, label:"Skill 封装", color:"#7c3aed"},
-    {end:42, label:"课后行动", color:"#1f5eff"}
+    {end:5, label:"开场定位", color:"#1f5eff"},
+    {end:16, label:"WorkBuddy 操作", color:"#1f5eff"},
+    {end:19, label:"任务指令", color:"#0b8f7a"},
+    {end:25, label:"项目与知识库", color:"#0b8f7a"},
+    {end:29, label:"朋友圈工作流", color:"#f59e0b"},
+    {end:35, label:"定联系统", color:"#1aa6d9"},
+    {end:39, label:"Skill 封装", color:"#7c3aed"},
+    {end:44, label:"课后行动", color:"#1f5eff"}
   ];
 
   const pageLabelMap = {
-    1:"3小时实操", 2:"学习路线", 3:"课堂产物", 4:"真实卡点",
-    5:"安装演示", 6:"安装检查", 7:"界面认知", 8:"基础设置",
-    9:"工作目录", 10:"办公室模型", 11:"创建任务", 12:"三种模式",
-    13:"任务管理", 14:"持续修改", 15:"任务卡", 16:"通用模板",
-    17:"任务升级", 18:"项目资产", 19:"项目指令", 20:"交付流程",
-    21:"资料准备", 22:"风格说明书", 23:"排障休息", 24:"场景一",
-    25:"内容角度", 26:"三轮优化", 27:"样本入库", 28:"场景二",
-    29:"隐私规则", 30:"定联快照", 31:"定联分析", 32:"定联计划",
-    33:"验收标准", 34:"Skill 判断", 35:"创建 Skill", 36:"测试 V1",
-    37:"Skill 管理", 38:"现场验收", 39:"知识资产", 40:"3天跟进",
-    41:"进阶地图", 42:"收束页"
+    1:"3小时实操",
+    2:"学习路线",
+    3:"课堂产物",
+    4:"Agent认知",
+    5:"真实卡点",
+    6:"安装演示",
+    7:"安装检查",
+    8:"界面认知",
+    9:"基础设置",
+    10:"使用边界",
+    11:"工作目录",
+    12:"办公室模型",
+    13:"创建任务",
+    14:"三种模式",
+    15:"任务管理",
+    16:"持续修改",
+    17:"任务卡",
+    18:"通用模板",
+    19:"任务升级",
+    20:"项目资产",
+    21:"项目指令",
+    22:"交付流程",
+    23:"资料准备",
+    24:"风格说明书",
+    25:"排障休息",
+    26:"场景一",
+    27:"内容角度",
+    28:"三轮优化",
+    29:"样本入库",
+    30:"场景二",
+    31:"隐私规则",
+    32:"定联快照",
+    33:"定联分析",
+    34:"定联计划",
+    35:"验收标准",
+    36:"Skill 判断",
+    37:"创建 Skill",
+    38:"测试 V1",
+    39:"Skill 管理",
+    40:"现场验收",
+    41:"知识资产",
+    42:"3天跟进",
+    43:"进阶地图",
+    44:"收束页"
   };
 
   const promptMeta = {
-    8:["让 AI 认识你","替换个人画像和工作问题","基础画像和清晰任务"],
-    9:["建立课堂工作目录","按自己电脑路径创建文件夹","一套可持续保存资料的目录"],
-    16:["把模糊需求写成工单","替换任务目标、资料、对象和边界","一张完整任务卡"],
-    17:["对比错误任务和优化任务","把主题、客户、资料、输出写清楚","一条可执行朋友圈任务"],
-    19:["写入项目角色和资料规则","替换成自己的展业定位和资料规则","项目指令上半部分"],
-    20:["写入表达、合规与交付流程","保留合规边界，替换个人表达要求","项目指令下半部分"],
-    22:["生成个人表达风格说明书","上传个人介绍和朋友圈样本","一份个人表达风格说明书"],
-    25:["生成朋友圈内容角度","替换主题、客户和表达目标","3个可选择内容角度"],
-    26:["生成并优化朋友圈初稿","替换选择的角度和字数要求","一条可继续保存的朋友圈文案"],
-    30:["统一匿名定联案例","替换为自己的匿名客户资料","一张定联客户快照"],
-    31:["整理事实和定联分析","粘贴匿名客户资料和沟通记录","一份定联分级和沟通分析"],
-    32:["生成定联话术和行动计划","替换联系目标和联系周期","三套定联话术和7天定联计划"],
-    35:["创建朋友圈 Skill V1","替换 Skill 名称和触发方式","一个朋友圈 Skill 初版"],
-    36:["补全 Skill 执行流程","替换测试主题和新增规则","Skill V1 测试结果和 V2 更新方向"],
-    39:["把沟通沉淀成资产","替换当天客户沟通内容","一份可入库的沟通复盘"]
+    9:["让 AI 认识你","替换个人画像和工作问题","基础画像和清晰任务"],
+    11:["建立课堂工作目录","按自己电脑路径创建文件夹","一套可持续保存资料的目录"],
+    18:["把模糊需求写成工单","替换任务目标、资料、对象和边界","一张完整任务卡"],
+    19:["对比错误任务和优化任务","把主题、客户、资料、输出写清楚","一条可执行朋友圈任务"],
+    21:["写入项目角色和资料规则","替换成自己的展业定位和资料规则","项目指令上半部分"],
+    22:["写入表达、合规与交付流程","保留合规边界，替换个人表达要求","项目指令下半部分"],
+    24:["生成个人表达风格说明书","上传个人介绍和朋友圈样本","一份个人表达风格说明书"],
+    27:["生成朋友圈内容角度","替换主题、客户和表达目标","3个可选择内容角度"],
+    28:["生成并优化朋友圈初稿","替换选择的角度和字数要求","一条可继续保存的朋友圈文案"],
+    32:["统一匿名定联案例","替换为自己的匿名客户资料","一张定联客户快照"],
+    33:["整理事实和定联分析","粘贴匿名客户资料和沟通记录","一份定联分级和沟通分析"],
+    34:["生成定联话术和行动计划","替换联系目标和联系周期","三套定联话术和7天定联计划"],
+    37:["创建朋友圈 Skill V1","替换 Skill 名称和触发方式","一个朋友圈 Skill 初版"],
+    38:["补全 Skill 执行流程","替换测试主题和新增规则","Skill V1 测试结果和 V2 更新方向"],
+    41:["把沟通沉淀成资产","替换当天客户沟通内容","一份可入库的沟通复盘"]
   };
 
   const outputLabelMap = {
-    5:"本页产出：完成安装入口确认",
-    7:"本页产出：认识首页三块区域",
-    8:"本页产出：基础画像和一个真实工作问题",
-    9:"本页产出：建好课堂工作目录",
-    11:"本页产出：会写任务说明书",
-    12:"本页产出：知道 Ask、Plan、Craft 什么时候用",
-    15:"本页产出：一张六格任务卡",
-    16:"本页产出：一段通用任务模板",
-    18:"本页产出：理解项目和知识库的分工",
-    22:"本页产出：个人表达风格说明书",
-    25:"本页产出：3个朋友圈内容角度",
-    26:"本页产出：一条朋友圈初稿和三轮优化方式",
-    27:"本页产出：朋友圈样板入库",
-    30:"本页产出：匿名定联客户快照",
-    31:"本页产出：定联分级和沟通分析",
-    32:"本页产出：定联话术和7天行动计划",
-    33:"本页产出：定联方案验收标准",
-    35:"本页产出：朋友圈 Skill V1",
-    36:"本页产出：Skill 测试和 V2 更新方向",
-    40:"本页产出：3天课后跟进清单",
-    42:"本页产出：下一步迭代方向"
+    4:"本页产出：理解聊天 AI 和桌面 Agent 的区别",
+    6:"本页产出：完成安装入口确认",
+    8:"本页产出：认识首页三块区域",
+    9:"本页产出：基础画像和一个真实工作问题",
+    10:"本页产出：明确 Agent 的资料边界",
+    11:"本页产出：建好课堂工作目录",
+    13:"本页产出：会写任务说明书",
+    14:"本页产出：知道 Ask、Plan、Craft 什么时候用",
+    17:"本页产出：一张六格任务卡",
+    18:"本页产出：一段通用任务模板",
+    20:"本页产出：理解项目和知识库的分工",
+    24:"本页产出：个人表达风格说明书",
+    27:"本页产出：3个朋友圈内容角度",
+    28:"本页产出：一条朋友圈初稿和三轮优化方式",
+    29:"本页产出：朋友圈样板入库",
+    32:"本页产出：匿名定联客户快照",
+    33:"本页产出：定联分级和沟通分析",
+    34:"本页产出：定联话术和7天行动计划",
+    35:"本页产出：定联方案验收标准",
+    37:"本页产出：朋友圈 Skill V1",
+    38:"本页产出：Skill 测试和 V2 更新方向",
+    42:"本页产出：3天课后跟进清单",
+    44:"本页产出：下一步迭代方向"
   };
 
   const routeTakeaways = [
@@ -77,13 +112,13 @@
   ];
 
   const shotMarkerMap = {
-    5:["选择版本", "下载安装"],
-    7:["左侧导航", "输入任务"],
-    11:["写清任务", "看任务结果"],
-    13:["任务记录", "产物文件"],
-    35:["点添加技能", "选择创建技能"],
-    37:["更多菜单", "管理技能"],
-    41:["点添加", "设置自动化"]
+    6:["选择版本", "下载安装"],
+    8:["左侧导航", "输入任务"],
+    13:["写清任务", "看任务结果"],
+    15:["任务记录", "产物文件"],
+    37:["点添加技能", "选择创建技能"],
+    39:["更多菜单", "管理技能"],
+    43:["点添加", "设置自动化"]
   };
 
   function text(el){
@@ -200,14 +235,14 @@
   }
 
   function promptStepsFor(page, meta){
-    if(page === 31){
+    if(page === 33){
       return [
         ["定联分级", "把客户资料分成关系温度、联系周期和本次目标"],
         ["沟通分析", "只基于资料判断顾虑、关注点和待验证问题"],
         ["复制执行", "只替换匿名客户资料和沟通记录"]
       ];
     }
-    if(page === 32){
+    if(page === 34){
       return [
         ["定联话术", "生成轻触达、价值型和探询型表达"],
         ["7天计划", "明确联系时间、目标和分支动作"],
@@ -388,7 +423,7 @@
   }
 
   function enhanceFlipCards(){
-    const slide = slides[3];
+    const slide = slides[4];
     const grid = slide?.querySelector(".grid.cols-3");
     if(!grid || grid.classList.contains("flip-grid")) return;
     const solutions = {
@@ -418,7 +453,7 @@
   }
 
   function enhanceOfficeMap(){
-    const slide = slides[9];
+    const slide = slides[11];
     const body = slide?.querySelector(".body");
     const grid = body?.querySelector(".grid.cols-3");
     if(!body || !grid || body.querySelector(".office-map")) return;
@@ -426,9 +461,9 @@
       <div class="office-map-title">搭建你的保险展业 AI 办公室</div>
       <div class="office-map-lines">
         <div><b>项目</b><span>办公室</span></div>
-        <div><b>项目指令</b><span>工作制度</span></div>
+        <div><b>项目指令</b><span>员工手册</span></div>
         <div><b>知识库</b><span>文件柜</span></div>
-        <div><b>Skill</b><span>员工技能</span></div>
+        <div><b>Skill</b><span>标准动作</span></div>
         <div><b>任务</b><span>工单</span></div>
         <div><b>产物</b><span>交付文件</span></div>
       </div>
@@ -438,11 +473,11 @@
   }
 
   function enhanceAskPlanCraft(){
-    const slide = slides[11];
-    const body = slide?.querySelector(".body");
+    const slide = slides[13];
+    const root = contentRoot(slide);
     const imageGrid = slide?.querySelector(".image-grid");
     const promptGrid = slide?.querySelector(".three-prompts");
-    if(!body || !imageGrid || !promptGrid || body.querySelector(".mode-tabs")) return;
+    if(!root || !imageGrid || !promptGrid || root.querySelector(".mode-tabs")) return;
     const modes = [
       ["Ask","问清楚、读文件、解释问题"],
       ["Plan","先规划多步骤，再等确认"],
@@ -463,12 +498,12 @@
     });
     const panel = el("div","apc-panel");
     panel.setAttribute("role","tabpanel");
-    body.insertBefore(tabs, imageGrid);
-    body.insertBefore(panel, imageGrid);
+    root.insertBefore(tabs, imageGrid);
+    root.insertBefore(panel, imageGrid);
     panel.appendChild(imageGrid);
     panel.appendChild(promptGrid);
     const tip = el("div","apc-tip","先 Ask 问清楚，再 Plan 拆步骤，最后 Craft 做产物。");
-    body.appendChild(tip);
+    root.appendChild(tip);
     const figures = Array.from(imageGrid.querySelectorAll("figure"));
     const prompts = Array.from(promptGrid.querySelectorAll(".prompt-box"));
     function setMode(index){
@@ -485,7 +520,7 @@
   }
 
   function enhanceTaskCards(){
-    const slide = slides[14];
+    const slide = slides[16];
     const body = slide?.querySelector(".body");
     const grid = body?.querySelector(".grid.cols-3");
     if(!body || !grid || body.querySelector(".task-builder")) return;
@@ -527,7 +562,7 @@
   }
 
   function enhanceCompare(){
-    const slide = slides[16];
+    const slide = slides[18];
     const pair = slide?.querySelector(".two-col");
     if(!pair || pair.classList.contains("compare-enhanced")) return;
     slide.classList.add("compare-slide");
@@ -568,11 +603,11 @@
       ["保存样本","命名成文件"],
       ["加入知识库","后续继续参考"]
     ];
-    [24,25,26,27].forEach((page) => {
+    [26,27,28,29].forEach((page) => {
       const slide = slides[page - 1];
       const root = contentRoot(slide);
       if(!root || root.querySelector(".friend-flow")) return;
-      const active = page === 24 ? 0 : page === 25 ? 1 : page === 26 ? 3 : 4;
+      const active = page === 26 ? 0 : page === 27 ? 1 : page === 28 ? 3 : 4;
       root.insertBefore(makeWorkflowRail(steps, active, "friend-flow"), root.firstChild);
     });
     addAngleCards();
@@ -581,7 +616,7 @@
   }
 
   function addAngleCards(){
-    const root = contentRoot(slides[24]);
+    const root = contentRoot(slides[26]);
     if(!root || root.querySelector(".angle-card-grid")) return;
     const cards = [
       ["生活观察","从身边变化切入","容易共鸣","低"],
@@ -599,7 +634,7 @@
   }
 
   function addOptimizerCards(){
-    const root = contentRoot(slides[25]);
+    const root = contentRoot(slides[27]);
     if(!root || root.querySelector(".optimizer-stack")) return;
     const html = [
       ["第一轮：自然化","减少培训课式表达，增加日常观察感。"],
@@ -615,7 +650,7 @@
   }
 
   function addFileToKnowledge(){
-    const root = contentRoot(slides[26]);
+    const root = contentRoot(slides[28]);
     if(!root || root.querySelector(".file-to-kb")) return;
     root.insertBefore(el("div","file-to-kb",`
       <div class="file-card-name">朋友圈样板_养老主题_V1.md</div>
@@ -625,7 +660,7 @@
   }
 
   function enhanceTaskSkill(){
-    const board = slides[33]?.querySelector(".decision-board");
+    const board = slides[35]?.querySelector(".decision-board");
     if(!board || board.classList.contains("skill-converter-board")) return;
     board.classList.add("skill-converter-board");
     const arrow = board.querySelector(".decision-arrow");
@@ -643,7 +678,7 @@
   }
 
   function enhanceCustomerLoop(){
-    const slide = slides[27];
+    const slide = slides[29];
     const board = slide?.querySelector(".workflow-board");
     if(!board || board.querySelector(".customer-loop")) return;
     board.classList.add("customer-enhanced");
@@ -664,7 +699,7 @@
   }
 
   function enhancePrivacyRules(){
-    const slide = slides[28];
+    const slide = slides[30];
     const board = slide?.querySelector(".privacy-board");
     if(!board || board.classList.contains("privacy-enhanced")) return;
     board.classList.add("privacy-enhanced");
@@ -685,7 +720,7 @@
   }
 
   function enhanceCustomerSnapshot(){
-    const root = contentRoot(slides[29]);
+    const root = contentRoot(slides[31]);
     if(!root || root.querySelector(".customer-snapshot")) return;
     const snapshot = el("div","customer-snapshot",[
       ["年龄段","38岁"],
@@ -699,7 +734,7 @@
   }
 
   function enhanceCustomerPromptStructure(){
-    [31,32].forEach((page) => {
+    [33,34].forEach((page) => {
       const root = contentRoot(slides[page - 1]);
       if(!root || root.querySelector(".task-structure")) return;
       const structure = el("div","task-structure",["事实整理","定联分级","沟通分析","定联话术","7天计划","自检"].map((item) => `<span>${item}</span>`).join(""));
@@ -708,7 +743,7 @@
   }
 
   function enhanceCustomerChecks(){
-    const slide = slides[32];
+    const slide = slides[34];
     const body = slide?.querySelector(".body");
     const grid = body?.querySelector(".grid.cols-3");
     if(!body || !grid || body.querySelector(".check-inspector")) return;
@@ -739,7 +774,7 @@
   }
 
   function enhanceSevenDayPlan(){
-    const slide = slides[39];
+    const slide = slides[41];
     const body = slide?.querySelector(".body");
     const grid = body?.querySelector(".grid.cols-4");
     if(!body || !grid || body.querySelector(".action-calendar")) return;
@@ -786,7 +821,7 @@
   }
 
   function enhanceLadder(){
-    const slide = slides[40];
+    const slide = slides[42];
     const grid = slide?.querySelector(".grid.cols-1");
     if(!grid || grid.classList.contains("ladder-map")) return;
     const steps = [
@@ -812,7 +847,7 @@
   }
 
   function enhanceClosing(){
-    const slide = slides[41];
+    const slide = slides[43];
     const body = slide?.querySelector(".body");
     const title = slide?.querySelector("h1");
     if(title) title.textContent = "今天你已经搭好了第一间 AI 办公室";
