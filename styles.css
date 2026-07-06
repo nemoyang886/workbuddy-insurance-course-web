@@ -2996,6 +2996,16 @@ h1{
   max-height:none;
 }
 
+.slide[data-page="33"] .prompt-box:not(.is-expanded)::after,
+.slide[data-page="34"] .prompt-box:not(.is-expanded)::after{
+  display:none;
+}
+
+.slide[data-page="33"] .prompt-box pre,
+.slide[data-page="34"] .prompt-box pre{
+  padding-bottom:2.2vh;
+}
+
 .slide[data-page="33"] .task-structure,
 .slide[data-page="34"] .task-structure{
   margin-bottom:0;
