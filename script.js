@@ -3,12 +3,12 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const total = slides.length;
   const stageList = [
-    {end:5, label:"开场定位", color:"#1f5eff"},
-    {end:16, label:"WorkBuddy 操作", color:"#1f5eff"},
-    {end:19, label:"任务指令", color:"#0b8f7a"},
-    {end:25, label:"项目与知识库", color:"#0b8f7a"},
-    {end:29, label:"朋友圈工作流", color:"#f59e0b"},
-    {end:35, label:"定联系统", color:"#1aa6d9"},
+    {end:5, label:"概念校准", color:"#1f5eff"},
+    {end:10, label:"Agent 认知", color:"#1f5eff"},
+    {end:21, label:"方法训练", color:"#0b8f7a"},
+    {end:25, label:"进入实操", color:"#0b8f7a"},
+    {end:29, label:"内容发布工作流", color:"#f59e0b"},
+    {end:35, label:"定联/跟进系统", color:"#1aa6d9"},
     {end:39, label:"Skill 封装", color:"#7c3aed"},
     {end:44, label:"课后行动", color:"#1f5eff"}
   ];
@@ -19,35 +19,35 @@
     3:"课堂产物",
     4:"Agent认知",
     5:"真实卡点",
-    6:"安装演示",
-    7:"安装检查",
-    8:"界面认知",
-    9:"使用边界",
-    10:"基础设置",
-    11:"工作目录",
-    12:"办公室模型",
-    13:"创建任务",
-    14:"三种模式",
-    15:"任务管理",
-    16:"持续修改",
-    17:"任务卡",
-    18:"通用模板",
-    19:"任务升级",
-    20:"Agent 方法",
-    21:"工作规则",
-    22:"合规流程",
-    23:"资料准备",
-    24:"风格说明书",
+    6:"Agent 方法",
+    7:"办公室模型",
+    8:"使用边界",
+    9:"基础设置",
+    10:"工作目录",
+    11:"资料准备",
+    12:"任务卡",
+    13:"通用模板",
+    14:"任务升级",
+    15:"创建任务",
+    16:"三种模式",
+    17:"任务管理",
+    18:"持续修改",
+    19:"工作规则",
+    20:"合规流程",
+    21:"风格说明书",
+    22:"安装演示",
+    23:"安装检查",
+    24:"界面认知",
     25:"排障休息",
-    26:"场景一",
+    26:"内容场景",
     27:"内容角度",
     28:"三轮优化",
     29:"样本入库",
-    30:"定联方法",
+    30:"定联/跟进方法",
     31:"隐私规则",
-    32:"定联快照",
-    33:"定联分析",
-    34:"定联计划",
+    32:"跟进快照",
+    33:"跟进分析",
+    34:"跟进计划",
     35:"验收标准",
     36:"Skill 判断",
     37:"创建 Skill",
@@ -61,47 +61,51 @@
   };
 
   const promptMeta = {
-    10:["让 AI 认识你","替换身份画像和真实任务","基础画像和清晰任务"],
-    11:["建立课堂工作目录","按自己的资料类型创建文件夹","一套可持续保存资料的目录"],
-    14:["区分 Ask / Plan / Craft","按任务类型选择对应模式","知道三种模式什么时候用"],
-    18:["把模糊需求写成工单","替换任务目标、资料、对象和边界","一张完整任务卡"],
-    19:["对比错误任务和优化任务","把主题、客户、资料、输出写清楚","一条可执行朋友圈任务"],
-    21:["写清 AI 工作规则","替换成自己的展业定位和资料规则","一份 AI 工作规则"],
-    22:["写入表达、合规与交付流程","保留合规边界，替换个人表达要求","一套交付检查流程"],
-    24:["生成个人表达风格说明书","读取个人画像、工作规则和样本","后续朋友圈可调用的风格说明书"],
-    27:["生成朋友圈内容角度","先读取个人表达风格说明书","3个可选择内容角度"],
-    28:["生成并优化朋友圈初稿","用风格说明书做对照验收","一条符合个人风格的朋友圈文案"],
-    32:["统一匿名定联案例","替换为自己的匿名客户资料","一张定联客户快照"],
-    33:["整理事实和定联分析","粘贴匿名客户资料和沟通记录","一份ABCD分级和沟通分析"],
-    34:["生成定联话术和行动计划","按分级周期安排联系动作","三套定联话术和7天定联计划"],
-    37:["创建朋友圈 Skill V1","替换 Skill 名称和触发方式","一个朋友圈 Skill 初版"],
+    9:["让 AI 认识你","选择保险顾问版或通用版，替换身份画像和真实任务","基础画像和清晰任务"],
+    10:["建立课堂工作目录","选择保险顾问版或通用版创建文件夹","一套可持续保存资料的目录"],
+    13:["把模糊需求写成工单","选择保险顾问版或通用版，替换目标、资料、对象和边界","一张完整任务卡"],
+    14:["对比错误任务和优化任务","按自己的身份选择保险顾问版或通用版","一条可执行内容任务"],
+    16:["区分 Ask / Plan / Craft","按任务类型选择对应模式","知道三种模式什么时候用"],
+    19:["写清 AI 工作规则","选择保险顾问版或通用版，替换定位和资料规则","一份 AI 工作规则"],
+    20:["写入表达、边界与交付流程","保留边界，替换个人表达要求","一套交付检查流程"],
+    21:["生成个人表达风格说明书","读取个人画像、工作规则和样本","后续内容可调用的风格说明书"],
+    27:["生成内容角度","先读取个人表达风格说明书","3个可选择内容角度"],
+    28:["生成并优化内容初稿","用风格说明书做对照验收","一条符合个人风格的内容初稿"],
+    32:["统一匿名案例","选择保险顾问版或通用版替换资料","一张跟进快照"],
+    33:["整理事实和跟进分析","粘贴匿名客户或对象资料和沟通记录","一份ABCD分级和沟通分析"],
+    34:["生成话术和行动计划","按分级周期安排联系动作","三套跟进话术和7天计划"],
+    37:["创建内容 Skill V1","替换 Skill 名称和触发方式","一个内容 Skill 初版"],
     38:["补全 Skill 执行流程","加入录音卡、学习资料等来源","Skill V1 测试结果和 V2 更新方向"],
-    41:["把沟通沉淀成资产","替换当天客户沟通内容","一份可入库的沟通复盘"]
+    41:["把沟通沉淀成资产","替换当天沟通或学习内容","一份可入库的复盘记录"]
   };
 
   const outputLabelMap = {
     4:"本页产出：理解聊天 AI 和桌面 Agent 的区别",
-    6:"本页产出：完成安装入口确认",
-    8:"本页产出：认识首页三块区域",
-    9:"本页产出：明确 Agent 的资料边界",
-    10:"本页产出：基础画像和一个真实工作问题",
-    11:"本页产出：建好课堂工作目录",
-    13:"本页产出：会写任务说明书",
-    14:"本页产出：知道 Ask、Plan、Craft 什么时候用",
-    17:"本页产出：一张六格任务卡",
-    18:"本页产出：一段通用任务模板",
-    20:"本页产出：理解正确使用 Agent 的底层方法",
-    21:"本页产出：一份 AI 工作规则",
-    24:"本页产出：后续朋友圈可调用的个人表达风格说明书",
-    27:"本页产出：3个朋友圈内容角度",
-    28:"本页产出：一条朋友圈初稿和三轮优化方式",
-    29:"本页产出：朋友圈样板入库",
-    30:"本页产出：理解定联ABCD分级和联系周期",
-    32:"本页产出：匿名定联客户快照",
-    33:"本页产出：ABCD定联分级和沟通分析",
-    34:"本页产出：定联话术和7天行动计划",
-    35:"本页产出：定联方案验收标准",
-    37:"本页产出：朋友圈 Skill V1",
+    6:"本页产出：理解正确使用 Agent 的底层方法",
+    7:"本页产出：理解项目、资料库、任务和 Skill 的关系",
+    8:"本页产出：明确 Agent 的资料边界",
+    9:"本页产出：基础画像和一个真实工作问题",
+    10:"本页产出：建好课堂工作目录",
+    12:"本页产出：一张六格任务卡",
+    13:"本页产出：一段通用任务模板",
+    14:"本页产出：一条可执行内容任务",
+    15:"本页产出：会写任务说明书",
+    16:"本页产出：知道 Ask、Plan、Craft 什么时候用",
+    17:"本页产出：会管理每一次任务",
+    18:"本页产出：会在同一任务里持续修改",
+    19:"本页产出：一份 AI 工作规则",
+    21:"本页产出：后续内容可调用的个人表达风格说明书",
+    22:"本页产出：完成安装入口确认",
+    24:"本页产出：认识首页三块区域",
+    27:"本页产出：3个内容角度",
+    28:"本页产出：一条内容初稿和三轮优化方式",
+    29:"本页产出：满意样板入库",
+    30:"本页产出：理解定联/跟进ABCD分级和联系周期",
+    32:"本页产出：匿名跟进快照",
+    33:"本页产出：ABCD分级和沟通分析",
+    34:"本页产出：跟进话术和7天行动计划",
+    35:"本页产出：跟进方案验收标准",
+    37:"本页产出：内容 Skill V1",
     38:"本页产出：Skill 可读取的真实资料来源清单",
     39:"本页产出：理解长期陪跑营的 Skill 定制价值",
     42:"本页产出：3天课后跟进清单",
@@ -116,10 +120,10 @@
   ];
 
   const shotMarkerMap = {
-    6:["选择版本", "下载安装"],
-    8:["左侧导航", "任务输入区", "任务产物区"],
-    13:["任务说明", "产物预览", "继续修改"],
-    15:["新建任务", "任务列表"],
+    15:["任务说明", "产物预览", "继续修改"],
+    17:["新建任务", "任务列表"],
+    22:["选择版本", "下载安装"],
+    24:["左侧导航", "任务输入区", "任务产物区"],
     37:["点添加技能", "选择创建技能"],
     39:["更多菜单", "管理技能"],
     43:["点添加", "设置自动化"]
@@ -253,7 +257,7 @@
         ["结果检查", "验收事实边界、语气和可回复性"]
       ];
     }
-    if(page === 14){
+    if(page === 16){
       return [
         ["Ask", "适合问清楚、读资料、解释问题"],
         ["Plan", "适合先拆步骤、做计划、等确认"],
@@ -464,7 +468,7 @@
   }
 
   function enhanceOfficeMap(){
-    const slide = slides[11];
+    const slide = slides[6];
     const body = slide?.querySelector(".body");
     const grid = body?.querySelector(".grid.cols-3");
     if(!body || !grid || body.querySelector(".office-map")) return;
@@ -484,7 +488,7 @@
   }
 
   function enhanceAskPlanCraft(){
-    const slide = slides[13];
+    const slide = slides[15];
     const root = contentRoot(slide);
     const imageGrid = slide?.querySelector(".image-grid");
     const promptGrid = slide?.querySelector(".three-prompts");
@@ -531,7 +535,7 @@
   }
 
   function enhanceTaskCards(){
-    const slide = slides[16];
+    const slide = slides[11];
     const body = slide?.querySelector(".body");
     const grid = body?.querySelector(".grid.cols-3");
     if(!body || !grid || body.querySelector(".task-builder")) return;
@@ -573,7 +577,7 @@
   }
 
   function enhanceCompare(){
-    const slide = slides[18];
+    const slide = slides[13];
     const pair = slide?.querySelector(".two-col");
     if(!pair || pair.classList.contains("compare-enhanced")) return;
     slide.classList.add("compare-slide");
@@ -631,14 +635,14 @@
     if(!root || root.querySelector(".angle-card-grid")) return;
     const cards = [
       ["生活观察","从身边变化切入","容易共鸣","低"],
-      ["客户误区","从常见想法切入","有被提醒感","中"],
+      ["对象顾虑","从常见想法切入","有被提醒感","中"],
       ["家庭现金流","从未来支出切入","更理性","低"]
     ].map(([title, angle, feeling, risk]) => `
       <div class="angle-card">
         <h3>${title}</h3>
         <p><b>切入方式</b>${angle}</p>
-        <p><b>客户感受</b>${feeling}</p>
-        <p><b>销售感风险</b>${risk}</p>
+        <p><b>读者感受</b>${feeling}</p>
+        <p><b>生硬感风险</b>${risk}</p>
       </div>
     `).join("");
     root.insertBefore(el("div","angle-card-grid",cards), root.querySelector(".prompt-box"));
@@ -664,7 +668,7 @@
     const root = contentRoot(slides[28]);
     if(!root || root.querySelector(".file-to-kb")) return;
     root.insertBefore(el("div","file-to-kb",`
-      <div class="file-card-name">朋友圈样板_养老主题_V1.md</div>
+      <div class="file-card-name">内容样板_主题_V1.md</div>
       <div class="file-arrow">→</div>
       <div class="kb-card-name">知识库：满意样本</div>
     `), root.firstChild);
@@ -694,10 +698,10 @@
     if(!board || board.querySelector(".customer-loop")) return;
     board.classList.add("customer-enhanced");
     const rail = makeWorkflowRail([
-      ["客户池","匿名输入"],
-      ["定联分级","关系温度"],
+      ["对象池","匿名输入"],
+      ["跟进分级","关系温度"],
       ["沟通分析","看见顾虑"],
-      ["定联话术","微信可直接改"],
+      ["跟进话术","微信可直接改"],
       ["7天计划","持续联系"],
       ["复盘沉淀","进入知识库"]
     ],0,"customer-loop");
@@ -705,7 +709,7 @@
     const steps = Array.from(board.querySelectorAll(".workflow-step"));
     steps.forEach((step, index) => makeButtonLike(step, () => {
       steps.forEach((item, i) => item.classList.toggle("is-active", i === index));
-    }, "查看定联动作"));
+    }, "查看跟进动作"));
     steps[0]?.classList.add("is-active");
   }
 
@@ -715,7 +719,7 @@
     if(!board || board.classList.contains("privacy-enhanced")) return;
     board.classList.add("privacy-enhanced");
     const groups = board.querySelectorAll(".token-grid");
-    if(groups[0]) groups[0].innerHTML = ["匿名客户画像","沟通大意","客户明确反馈","当前推进状态"].map((item) => `<span class="token">${item}</span>`).join("");
+    if(groups[0]) groups[0].innerHTML = ["匿名对象画像","沟通大意","明确反馈","当前推进状态"].map((item) => `<span class="token">${item}</span>`).join("");
     if(groups[1]) groups[1].innerHTML = ["真实姓名","电话","身份证","家庭住址","保单号","银行信息","详细健康资料"].map((item) => `<span class="token">${item}</span>`).join("");
     const rule = board.querySelector(".rule-card");
     if(rule && !rule.querySelector(".privacy-lock-scene")){
