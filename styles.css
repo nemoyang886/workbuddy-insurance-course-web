@@ -4902,6 +4902,34 @@ figcaption{
   color:var(--wb-blue);
 }
 
+.newbie-prompt-strip{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  align-items:center;
+  gap:14px;
+  margin-top:1.2vh;
+  padding:16px 18px;
+  border:1px solid rgba(31,94,255,.2);
+  border-left:5px solid var(--wb-blue);
+  border-radius:18px;
+  background:linear-gradient(135deg,#eff6ff,#ffffff);
+  color:var(--text);
+  box-shadow:0 14px 32px rgba(15,47,112,.08);
+}
+
+.newbie-prompt-strip b{
+  color:var(--wb-blue);
+  font-size:clamp(18px,1.2vw,24px);
+  white-space:nowrap;
+}
+
+.newbie-prompt-strip span{
+  color:var(--muted);
+  font-size:clamp(16px,1.05vw,21px);
+  font-weight:750;
+  line-height:1.55;
+}
+
 .style-manual-value{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
@@ -5241,7 +5269,7 @@ figcaption{
 
 .camp-grid{
   display:grid;
-  grid-template-rows:repeat(3,minmax(0,1fr));
+  grid-template-rows:repeat(4,minmax(0,1fr));
   gap:clamp(12px,1vh,18px);
 }
 
