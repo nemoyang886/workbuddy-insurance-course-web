@@ -113,9 +113,9 @@
   };
 
   const routeTakeaways = [
-    ["身份画像", "真实任务", "一句清晰需求"],
-    ["任务入口", "工作规则", "Ask Plan Craft"],
-    ["内容样本", "跟进方案", "课堂产物"],
+    ["聊天 AI", "桌面 Agent", "办公室模型"],
+    ["资料准备", "六格任务卡", "工作规则"],
+    ["内容发布", "定联/跟进", "课堂产物"],
     ["满意样本", "Skill V1", "3天跟进"]
   ];
 
@@ -296,6 +296,43 @@
     });
   }
 
+  function splitDualPrompt(raw){
+    const insuranceKey = "【保险顾问版】";
+    const generalKey = "【通用版】";
+    const insuranceStart = raw.indexOf(insuranceKey);
+    const generalStart = raw.indexOf(generalKey);
+    if(insuranceStart === -1 || generalStart === -1 || generalStart <= insuranceStart) return null;
+    const insuranceText = raw.slice(insuranceStart, generalStart).replace(/\n-{3,}\n*/g,"\n").trim();
+    const generalText = raw.slice(generalStart).replace(/\n-{3,}\n*/g,"\n").trim();
+    return {
+      insurance: insuranceText,
+      general: generalText
+    };
+  }
+
+  function enhancePromptVersionTabs(box, pre){
+    if(box.querySelector(".prompt-version-tabs")) return;
+    const versions = splitDualPrompt(pre.textContent.trim());
+    if(!versions) return;
+    const tabs = el("div","prompt-version-tabs",`
+      <button type="button" class="active" data-version="insurance">保险顾问版</button>
+      <button type="button" data-version="general">通用版</button>
+    `);
+    const setVersion = (version) => {
+      const active = versions[version] ? version : "insurance";
+      pre.textContent = versions[active];
+      box.dataset.promptVersion = active;
+      tabs.querySelectorAll("button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.version === active);
+      });
+    };
+    tabs.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", () => setVersion(button.dataset.version));
+    });
+    box.insertBefore(tabs, pre);
+    setVersion("insurance");
+  }
+
   function wrapPromptSlides(){
     slides.forEach((slide) => {
       if(!slide.classList.contains("template-prompt")) return;
@@ -339,6 +376,7 @@
         `);
         box.insertBefore(tags, pre);
       }
+      enhancePromptVersionTabs(box, pre);
       if(slide?.classList.contains("template-prompt") && !box.querySelector(".toggle-prompt")){
         const toggle = el("button","toggle-prompt","展开完整提示词");
         toggle.type = "button";
@@ -389,6 +427,72 @@
     });
   }
 
+  function enhanceLearningPathOverview(){
+    const slide = slides[1];
+    const map = slide?.querySelector(".route-map");
+    if(!map || map.querySelector(".learning-path-overview")) return;
+    const hero = map.querySelector(".route-hero");
+    const overview = el("div","learning-path-overview",[
+      ["概念","先懂 Agent","知道为什么不是普通聊天"],
+      ["方法","会下任务","用六格任务卡交代工作"],
+      ["实操","跑通场景","内容发布 + 定联/跟进"],
+      ["沉淀","变成资产","样本、知识库、Skill"]
+    ].map(([kicker,title,desc]) => `
+      <div>
+        <span>${escapeHtml(kicker)}</span>
+        <b>${escapeHtml(title)}</b>
+        <em>${escapeHtml(desc)}</em>
+      </div>
+    `).join(""));
+    hero?.after(overview);
+    const routeSteps = Array.from(map.querySelectorAll(".route-step"));
+    const labels = [
+      ["Concept","先讲概念","聊天 AI、桌面 Agent、办公室模型、资料边界。"],
+      ["Method","再讲方法","资料准备、六格任务卡、工作规则和表达风格。"],
+      ["Practice","最后实操","安装检查、界面认知、内容发布、定联/跟进。"],
+      ["Reuse","沉淀复用","把满意结果保存成知识库和 Skill。"]
+    ];
+    routeSteps.forEach((step, index) => {
+      const data = labels[index];
+      if(!data) return;
+      const tag = step.querySelector(".step-tag");
+      const title = step.querySelector("h3");
+      const desc = step.querySelector("p");
+      if(tag) tag.textContent = data[0];
+      if(title) title.textContent = data[1];
+      if(desc) desc.textContent = data[2];
+    });
+  }
+
+  function enhanceIdentityChoice(){
+    const slide = slides[2];
+    const body = slide?.querySelector(".body");
+    const stage = body?.querySelector(".outcome-stage");
+    if(!body || !stage || body.querySelector(".identity-choice")) return;
+    const items = [
+      ["保险顾问","用朋友圈、定联、保单年检和客户复盘练习。"],
+      ["普通新人","用学习整理、内容发布、资料整理和日常跟进练习。"],
+      ["其他行业","用客户经营、团队协作、项目推进和知识沉淀练习。"]
+    ];
+    const panel = el("div","identity-choice",`
+      <strong>先选你的课堂身份</strong>
+      <div>
+        ${items.map(([title,desc], index) => `
+          <button type="button" class="${index === 0 ? "active" : ""}">
+            <b>${escapeHtml(title)}</b>
+            <span>${escapeHtml(desc)}</span>
+          </button>
+        `).join("")}
+      </div>
+    `);
+    panel.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", () => {
+        panel.querySelectorAll("button").forEach((item) => item.classList.toggle("active", item === button));
+      });
+    });
+    body.insertBefore(panel, stage);
+  }
+
   function enhanceRouteTimeline(){
     const slide = slides[1];
     const map = slide?.querySelector(".route-map");
@@ -435,6 +539,43 @@
     }
     setActive(0);
     body.appendChild(el("div","outcome-statement","今天结束，你将带走一个可继续迭代的个人 AI 工作台。"));
+  }
+
+  function addModuleGuides(){
+    const guides = {
+      4:["概念理解","你现在要学什么：先分清聊天 AI 和桌面 Agent，知道为什么要用工作流。"],
+      11:["方法训练","你现在要学什么：准备资料、写任务卡、把模糊需求变成可执行工单。"],
+      22:["进入实操","你现在要学什么：先让所有人进入可操作状态，没装好也能跟着做。"],
+      26:["场景一","你现在要学什么：用同一套任务方法，跑通内容发布。"],
+      30:["场景二","你现在要学什么：把长期联系对象变成有节奏、可记录、可复盘的系统。"],
+      36:["沉淀复用","你现在要学什么：从一次任务，变成知识资产、Skill 和课后行动。"]
+    };
+    Object.entries(guides).forEach(([page, [label, desc]]) => {
+      const body = slides[Number(page) - 1]?.querySelector(".body");
+      if(!body || body.querySelector(".module-guide")) return;
+      body.insertBefore(el("div","module-guide",`
+        <span>${escapeHtml(label)}</span>
+        <strong>${escapeHtml(desc)}</strong>
+      `), body.firstChild);
+    });
+  }
+
+  function addCatchUpNotes(){
+    const notes = {
+      22:"还没装好：先看演示，把提示词复制到文档里。已经装好：跟着完成下载和登录检查。",
+      24:"看不清界面：只记住左侧导航、中间任务输入、右侧产物区三块。后面都会围绕这三块操作。",
+      26:"还没跟上：先复制老师示例，不急着改成自己的主题。已经跟上：替换成自己的内容主题。",
+      30:"没有客户资料：用课堂匿名案例练习。其他行业学员：把客户替换成需要持续联系的对象。",
+      37:"不会创建 Skill：先看老师演示，课后用陪跑营或模板直接生成你的专属 Skill。"
+    };
+    Object.entries(notes).forEach(([page, note]) => {
+      const body = slides[Number(page) - 1]?.querySelector(".body");
+      if(!body || body.querySelector(".catch-up-note")) return;
+      body.insertBefore(el("div","catch-up-note",`
+        <b>掉队也能跟上</b>
+        <span>${escapeHtml(note)}</span>
+      `), body.firstChild);
+    });
   }
 
   function enhanceFlipCards(){
@@ -674,6 +815,28 @@
     `), root.firstChild);
   }
 
+  function enhanceStyleManualValue(){
+    const root = contentRoot(slides[20]);
+    if(!root || root.querySelector(".style-manual-value")) return;
+    const panel = el("div","style-manual-value",`
+      <div>
+        <span>没有它</span>
+        <strong>AI 写出来像模板</strong>
+      </div>
+      <div class="accent">
+        <span>有了它</span>
+        <strong>AI 才开始像你的助理</strong>
+      </div>
+      <div>
+        <span>后面所有内容</span>
+        <strong>先读说明书，再生成初稿</strong>
+      </div>
+    `);
+    const anchor = root.querySelector(".prompt-teach-panel");
+    if(anchor) anchor.after(panel);
+    else root.insertBefore(panel, root.firstChild);
+  }
+
   function enhanceTaskSkill(){
     const board = slides[35]?.querySelector(".decision-board");
     if(!board || board.classList.contains("skill-converter-board")) return;
@@ -690,6 +853,7 @@
     enhanceCustomerSnapshot();
     enhanceCustomerPromptStructure();
     enhanceCustomerChecks();
+    enhanceFollowupProfessional();
   }
 
   function enhanceCustomerLoop(){
@@ -861,6 +1025,41 @@
     });
   }
 
+  function enhanceFollowupProfessional(){
+    const slide = slides[29];
+    const body = slide?.querySelector(".body");
+    const board = body?.querySelector(".workflow-board");
+    if(!body || !board || body.querySelector(".followup-principles")) return;
+    const panel = el("div","followup-principles",`
+      <strong>定联的专业逻辑</strong>
+      <span>不是催促成交，而是把获客、留客、养客变成固定节奏。</span>
+      <div>
+        <b>名单池</b>
+        <b>关系温度</b>
+        <b>价值触达</b>
+        <b>记录反馈</b>
+        <b>下次行动</b>
+      </div>
+    `);
+    body.insertBefore(panel, board);
+  }
+
+  function enhanceCampValue(){
+    const slide = slides[38];
+    const panel = slide?.querySelector(".teach-panel");
+    if(!panel || panel.querySelector(".camp-deliverables")) return;
+    panel.insertBefore(el("div","camp-deliverables",`
+      <strong>陪跑营核心价值</strong>
+      <span>你不用自己创建、更新、调试 Skill，直接拿适合你业务的工作流来用。</span>
+      <div>
+        <b>专属 Skill</b>
+        <b>流程定制</b>
+        <b>持续调试</b>
+        <b>拿来就用</b>
+      </div>
+    `), panel.firstChild);
+  }
+
   function enhanceClosing(){
     const slide = slides[43];
     const body = slide?.querySelector(".body");
@@ -937,7 +1136,7 @@
   }
 
   function addRevealIndexes(slide){
-    const items = slide.querySelectorAll(".card,.route-step,.cue-card,.workflow-step,.privacy-card,.rule-card,.shot,.prompt-box,.workflow-node,.angle-card,.optimizer-layer,.file-to-kb,.office-map-lines > div,.customer-snapshot > div,.task-structure span,.day-card,.ladder-card,.prompt-step-card,.route-proof span,.sample-slot,.shot-callout");
+    const items = slide.querySelectorAll(".card,.route-step,.cue-card,.workflow-step,.privacy-card,.rule-card,.shot,.prompt-box,.workflow-node,.angle-card,.optimizer-layer,.file-to-kb,.office-map-lines > div,.customer-snapshot > div,.task-structure span,.day-card,.ladder-card,.prompt-step-card,.route-proof span,.sample-slot,.shot-callout,.learning-path-overview > div,.identity-choice,.module-guide,.catch-up-note,.style-manual-value,.followup-principles,.camp-deliverables");
     items.forEach((item, index) => item.style.setProperty("--reveal-i", index));
   }
 
@@ -961,19 +1160,25 @@
   enhanceCover();
   wrapPromptSlides();
   enhancePromptCopyAndTags();
+  enhanceLearningPathOverview();
   enhanceRouteTimeline();
   enhanceOutcomeBadges();
+  enhanceIdentityChoice();
+  addModuleGuides();
+  addCatchUpNotes();
   enhanceFlipCards();
   enhanceOfficeMap();
   enhanceAskPlanCraft();
   enhanceTaskCards();
   enhanceCompare();
   addShotMarkers();
+  enhanceStyleManualValue();
   enhanceFriendCircleFlow();
   enhanceTaskSkill();
   enhanceCustomerWorkflow();
   enhanceSevenDayPlan();
   enhanceLadder();
+  enhanceCampValue();
   enhanceClosing();
   addOutputLabels();
   slides.forEach(addRevealIndexes);
