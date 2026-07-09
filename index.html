@@ -680,7 +680,7 @@
     }
   </style>
   <link rel="preload" href="images/cover-workbuddy-image2.webp" as="image" fetchpriority="high" />
-  <link rel="stylesheet" href="styles.css?v=20260706-prompt-overlay-fix" />
+  <link rel="stylesheet" href="styles.css?v=20260709-annotation-flow-fix" />
 </head>
 <body>
   <main id="deck"><section class="slide cover cover-poster-slide">
@@ -916,10 +916,35 @@
   </div>
       </div>
     </div></div>
+  </section><section class="slide agent-setup-slide">
+    <div class="slide-top">
+      <div class="eyebrow">Agent 使用边界</div>
+      <div class="page-no">09 / 44</div>
+    </div>
+    <div class="time-pill">使用边界</div>
+    <h1>第一次用 Agent，先讲清楚三件事</h1>
+    <div class="body"><div class="agent-setup-board">
+      <div class="agent-setup-card accent">
+        <span>01</span>
+        <h2>你是谁</h2>
+        <p>你的身份、目标、当前任务、专业方向或学习方向、表达风格。</p>
+      </div>
+      <div class="agent-setup-card">
+        <span>02</span>
+        <h2>它可以看什么</h2>
+        <p>个人介绍、内容样本、匿名案例、学习资料、知识库文件。</p>
+      </div>
+      <div class="agent-setup-card danger">
+        <span>03</span>
+        <h2>它不能碰什么</h2>
+        <p>姓名、电话、身份证、保单号、银行卡、未经脱敏的健康信息。</p>
+      </div>
+      <div class="agent-setup-note">只要涉及客户、家人、朋友、学习资料或工作资料，都要先想清楚哪些能给 AI 看，哪些不能给。资料越清楚、权限越克制，Agent 越容易做出可用结果。</div>
+    </div></div>
   </section><section class="slide ">
     <div class="slide-top">
       <div class="eyebrow">基础设置</div>
-      <div class="page-no">09 / 44</div>
+      <div class="page-no">10 / 44</div>
     </div>
     <div class="time-pill">基础设置</div>
     <h1>先让 WorkBuddy 认识你</h1>
@@ -957,31 +982,6 @@
 如果我是普通新人，请帮我整理成《我的个人 AI 工作基础画像》。
 并帮我把最后这个工作问题改写成一条清晰任务。</pre>
   </div>
-    </div></div>
-  </section><section class="slide agent-setup-slide">
-    <div class="slide-top">
-      <div class="eyebrow">Agent 使用边界</div>
-      <div class="page-no">10 / 44</div>
-    </div>
-    <div class="time-pill">使用边界</div>
-    <h1>第一次用 Agent，先讲清楚三件事</h1>
-    <div class="body"><div class="agent-setup-board">
-      <div class="agent-setup-card accent">
-        <span>01</span>
-        <h2>你是谁</h2>
-        <p>你的身份、目标、当前任务、专业方向或学习方向、表达风格。</p>
-      </div>
-      <div class="agent-setup-card">
-        <span>02</span>
-        <h2>它可以看什么</h2>
-        <p>个人介绍、内容样本、匿名案例、学习资料、知识库文件。</p>
-      </div>
-      <div class="agent-setup-card danger">
-        <span>03</span>
-        <h2>它不能碰什么</h2>
-        <p>姓名、电话、身份证、保单号、银行卡、未经脱敏的健康信息。</p>
-      </div>
-      <div class="agent-setup-note">只要涉及客户、家人、朋友、学习资料或工作资料，都要先想清楚哪些能给 AI 看，哪些不能给。资料越清楚、权限越克制，Agent 越容易做出可用结果。</div>
     </div></div>
   </section><section class="slide ">
     <div class="slide-top">
@@ -2328,6 +2328,6 @@ Skill 目标：
     go(Number.isFinite(start) && start >= 0 ? start : 0);
     updateFullscreenButton();
   </script>
-  <script src="script.js?v=20260709-mixed-audience-front"></script>
+  <script src="script.js?v=20260709-annotation-flow-fix"></script>
 </body>
 </html>

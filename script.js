@@ -22,8 +22,8 @@
     6:"安装演示",
     7:"安装检查",
     8:"界面认知",
-    9:"基础设置",
-    10:"使用边界",
+    9:"使用边界",
+    10:"基础设置",
     11:"工作目录",
     12:"办公室模型",
     13:"创建任务",
@@ -61,8 +61,9 @@
   };
 
   const promptMeta = {
-    9:["让 AI 认识你","替换身份画像和真实任务","基础画像和清晰任务"],
+    10:["让 AI 认识你","替换身份画像和真实任务","基础画像和清晰任务"],
     11:["建立课堂工作目录","按自己的资料类型创建文件夹","一套可持续保存资料的目录"],
+    14:["区分 Ask / Plan / Craft","按任务类型选择对应模式","知道三种模式什么时候用"],
     18:["把模糊需求写成工单","替换任务目标、资料、对象和边界","一张完整任务卡"],
     19:["对比错误任务和优化任务","把主题、客户、资料、输出写清楚","一条可执行朋友圈任务"],
     21:["写清 AI 工作规则","替换成自己的展业定位和资料规则","一份 AI 工作规则"],
@@ -82,8 +83,8 @@
     4:"本页产出：理解聊天 AI 和桌面 Agent 的区别",
     6:"本页产出：完成安装入口确认",
     8:"本页产出：认识首页三块区域",
-    9:"本页产出：基础画像和一个真实工作问题",
-    10:"本页产出：明确 Agent 的资料边界",
+    9:"本页产出：明确 Agent 的资料边界",
+    10:"本页产出：基础画像和一个真实工作问题",
     11:"本页产出：建好课堂工作目录",
     13:"本页产出：会写任务说明书",
     14:"本页产出：知道 Ask、Plan、Craft 什么时候用",
@@ -116,9 +117,9 @@
 
   const shotMarkerMap = {
     6:["选择版本", "下载安装"],
-    8:["左侧导航", "输入任务"],
-    13:["写清任务", "看任务结果"],
-    15:["任务记录", "产物文件"],
+    8:["左侧导航", "任务输入区", "任务产物区"],
+    13:["任务说明", "产物预览", "继续修改"],
+    15:["新建任务", "任务列表"],
     37:["点添加技能", "选择创建技能"],
     39:["更多菜单", "管理技能"],
     43:["点添加", "设置自动化"]
@@ -252,6 +253,13 @@
         ["结果检查", "验收事实边界、语气和可回复性"]
       ];
     }
+    if(page === 14){
+      return [
+        ["Ask", "适合问清楚、读资料、解释问题"],
+        ["Plan", "适合先拆步骤、做计划、等确认"],
+        ["Craft", "适合生成或修改文件和正式产物"]
+      ];
+    }
     return [
       ["先看目标", meta[0]],
       ["再改变量", meta[1]],
@@ -291,20 +299,20 @@
       if(!body || body.querySelector(".prompt-brief-card")) return;
       const page = pageOf(slide);
       const meta = promptMeta[page] || ["复制课堂提示词","替换括号里的个人资料","一个可直接使用的任务产物"];
+      const steps = promptStepsFor(page, meta);
+      const result = (outputLabelMap[page] || "").replace(/^本页产出：/,"") || meta[2];
       const workspace = el("div","prompt-workspace");
       Array.from(body.children).forEach((child) => workspace.appendChild(child));
       workspace.insertBefore(makePromptTeachPanel(page, meta), workspace.firstChild);
       const brief = el("aside","prompt-brief-card",`
-        <strong>本页解决什么问题</strong>
-        <p>${escapeHtml(text(slide.querySelector("h1")))}</p>
+        <strong>${escapeHtml(meta[0])}</strong>
+        <p>${escapeHtml(result)}</p>
         <div class="prompt-flow-mini" aria-label="提示词使用步骤">
-          <span data-step="1">先看目标</span>
-          <span data-step="2">再改变量</span>
-          <span data-step="3">最后验收</span>
+          ${steps.map(([title], index) => `<span data-step="${index + 1}">${escapeHtml(title)}</span>`).join("")}
         </div>
         <div class="prompt-result-mini">
           <b>本页产出</b>
-          <span>${escapeHtml(meta[2])}</span>
+          <span>${escapeHtml(result)}</span>
         </div>
       `);
       body.appendChild(brief);
