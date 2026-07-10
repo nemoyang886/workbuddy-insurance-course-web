@@ -885,7 +885,7 @@
     if(!board || board.classList.contains("privacy-enhanced")) return;
     board.classList.add("privacy-enhanced");
     const groups = board.querySelectorAll(".token-grid");
-    if(groups[0]) groups[0].innerHTML = ["匿名对象画像","沟通大意","明确反馈","当前推进状态"].map((item) => `<span class="token">${item}</span>`).join("");
+    if(groups[0]) groups[0].innerHTML = ["对象画像","沟通大意","明确反馈","当前推进状态"].map((item) => `<span class="token">${item}</span>`).join("");
     if(groups[1]) groups[1].innerHTML = ["真实姓名","电话","身份证","家庭住址","保单号","银行信息","详细健康资料"].map((item) => `<span class="token">${item}</span>`).join("");
     const rule = board.querySelector(".rule-card");
     if(rule && !rule.querySelector(".privacy-lock-scene")){
@@ -1067,7 +1067,11 @@
     const slide = slides[43];
     const body = slide?.querySelector(".body");
     const title = slide?.querySelector("h1");
-    if(title) title.textContent = "今天你已经搭好了第一间 AI 办公室";
+    if(title) title.innerHTML = `
+      <span class="closing-title-line">今天你已经</span>
+      <span class="closing-title-line">搭好了第一间</span>
+      <span class="closing-title-line">AI 办公室</span>
+    `;
     if(!body || body.querySelector(".closing-actions")) return;
     const copy = body.querySelector(".closing-copy");
     const actions = el("div","closing-actions",[
